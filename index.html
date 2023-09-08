@@ -9,6 +9,7 @@
     video::-webkit-media-controls {
         display:none !important;
     }
+    
 
     .hide {
         position: absolute;
@@ -56,7 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var progress = (currentTime / duration) * 100;
         
         progressBar.value = progress;
-        progressText.textContent = '현재 재생률: ' + progress.toFixed(2) + '%';
+        progressText.textContent = '현재 재생률: ' + Math.round(progress) + '%'; // 숫자를 반올림하여 정수로 표현
+        //progressText.textContent = '현재 재생률: ' + progress.toFixed(2) + '%'; //소수점 이하 2자리까지만 남기고 나머지 반올림
     });
 });
 
@@ -93,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div>
         <span id="progressText" class="hide"></span>
     </div>
-    <progress id="progressBar" value="0" max="100"></progress>
+    <progress id="progressBar" value="0" max="100" aria-valuemin="0" aria-valuenow="" aria-valuemax="100"></progress>
       
 
 </div>
@@ -104,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     1번 : <progress max="100" value="45"></progress> <br>
     2번 : <progress class="c-indicator__progress" tabindex="0"  aria-label="File upload" aria-valuemin="0" aria-valuenow="60" aria-valuemax="100" max="100" value="45.55783480232925"></progress><br>
     3번 : <progress role="progressbar" aria-label="File upload" value="50" aria-valuemin="0" aria-valuenow="52" aria-valuemax="100" max="100"></progress><br>
-    4번:  <progress role="progressbar" aria-live="assertive" aria-label="54% 업로드 진행중" value="70.6123" aria-valuemin="0" aria-valuenow="70.6" aria-valuemax="100" max="100"></progress>
+    4번:  <progress role="progressbar" aria-label="54% 업로드 진행중" value="70.6123" aria-valuemin="0" aria-valuenow="70.6" aria-valuemax="100" max="100"></progress>
 </div>
 
 
