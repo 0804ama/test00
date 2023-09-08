@@ -120,23 +120,18 @@ function bc (){
 }
 
 //진행상태바
-var video = document.getElementById("myVideo");
-var progressBar = document.getElementById("progressBar");
-
-video.addEventListener("timeupdate", function() {
-    /*var video = document.getElementById('myVideo'); // 비디오 요소 가져오기
-    video.play(); // 비디오 재생
-    */
-
-  var currentTime = video.currentTime;
-  var duration = video.duration;
-  var progress = (currentTime / duration) * 100;
-  
-  progressBar.value = progress;
-
- 
+document.addEventListener('DOMContentLoaded', function() {
+    var video = document.getElementById('myVideo'); // 비디오 요소 가져오기
+    var progressBar = document.getElementById('progressBar'); // 진행 상태 바 요소 가져오기
+    
+    video.addEventListener('timeupdate', function() {
+        var currentTime = video.currentTime;
+        var duration = video.duration;
+        var progress = (currentTime / duration) * 100;
+        
+        progressBar.value = progress;
+    });
 });
-   
     
     
 </script>
@@ -157,11 +152,13 @@ video.addEventListener("timeupdate", function() {
 </div>
 
 <div>
-    <video controls autoplay id="myVideo" data-video="http://snsvideo.11st.co.kr/movie/item/www/147/14761747_10_1_MQ.mp4" playsinline="" preload="metadata" data-currenttime="0" src="http://snsvideo.11st.co.kr/movie/item/www/147/14761747_10_1_MQ.mp4#t=0" class="c-pick-video--show">
-        <source src="">
-    </video>
+   
+    <video id="myVideo" width="320" height="240" controls autoplay>
+        <source src="http://snsvideo.11st.co.kr/movie/item/www/147/14761747_10_1_MQ.mp4#t=0" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
       
-    <progress id="progressBar" value="0" max="100"></progress>
+      <progress id="progressBar" value="0" max="100"></progress>
 
 
 
