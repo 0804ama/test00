@@ -121,8 +121,9 @@ function bc (){
 
 //진행상태바
 document.addEventListener('DOMContentLoaded', function() {
-    var video = document.getElementById('myVideo'); // 비디오 요소 가져오기
-    var progressBar = document.getElementById('progressBar'); // 진행 상태 바 요소 가져오기
+    var video = document.getElementById('myVideo'); // 비디오 요소 
+    var progressBar = document.getElementById('progressBar'); // 진행 상태 바 요소 
+    var progressText = document.getElementById('progressText');
     
     video.addEventListener('timeupdate', function() {
         var currentTime = video.currentTime;
@@ -130,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var progress = (currentTime / duration) * 100;
         
         progressBar.value = progress;
+        progressText.textContent = '현재 재생률: ' + progress.toFixed(2) + '%';
     });
 });
 
@@ -160,9 +162,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <video id="myVideo" width="320" height="240" playsinline controls autoplay>
         <source src="http://snsvideo.11st.co.kr/movie/item/www/147/14761747_10_1_MQ.mp4#t=0" type="video/mp4">
         아하 영상이 없음..
-      </video>
+    </video>
+    <span id="progressText" aria-live="polite"></span>
       
       <progress id="progressBar" value="0" max="100" aria-live="assertive"></progress>
+      
 
 </div>
 
