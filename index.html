@@ -118,7 +118,18 @@ function bc (){
     }
    
 }
-    
+
+//진행상태바
+var video = document.getElementById("myVideo");
+var progressBar = document.getElementById("progressBar");
+
+video.addEventListener("timeupdate", function() {
+  var currentTime = video.currentTime;
+  var duration = video.duration;
+  var progress = (currentTime / duration) * 100;
+  
+  progressBar.value = progress;
+});
    
     
     
@@ -126,9 +137,6 @@ function bc (){
 </head>
     
 <body>
-
-
-
 
 
 
@@ -141,51 +149,20 @@ function bc (){
     <a href="" aria-current="page">픽픽!!</a>
     <a href="" > 픽사 </a>
 </div>
-<div>
-    <button type="button" class="c-goback" data-log-actionid-label="back"><span class="sr-only">뒤로 가기</span></button>
-</div>
-<div class="c-gnb__menu" id="gnbTop">
-    <button type="button" class="c-gnb__back" data-log-actionid-label="back">
-        <span class="sr-only">뒤로 가기</span>
-    </button>
-    <br>
-    <h1 class="c-gnb__logo">
-        <a href="#" class="c-gnb__link" title="홈으로 이동">
-            <span class="logo-11st">11번가</span>
-        </a>
-        <a href="#" class="c-gnb__link" title="우아픽 홈으로 이동" aria-current="page">
-            <span class="logo-ooah-pick">
-                <img src="" alt="OOAh Pick">
-            </span>
-        </a>
-    </h1>
-    <a href="//buy.m.11st.co.kr/MW/Hybrid/cart.jsp" class="c-gnb__cart" data-log-actionid-label="cart" data-log-index="4">장바구니</a>
-</div>
-<a href="..."> <!-- a 요소 활용 -->
-    <div role="text"...> <!-- role 속성 적용 -->
-        <h2...>
-            <span...><img alt="" src="..."></span> <!-- alt="" 으로 제공 -->
-            <span...>THE GRANN</span>
-        </h2>
-        <h2...>당신의 일상에 <br> 달콤한 휴식을 선물할</h2>
-            <p...>더 그란 프리미엄 타월 &amp; 로브</p>
-            <div...>
-                <span...>상세페이지 이동</span>
-            </div>
-    </div>
-</a>
 
 <div>
-    <a href="https://www.naver.com"> <img src="https://www.kt.com/images/area/A000000616/C000009504v4.png" alt=""></a>    
-    <a href="https://www.naver.com" role="button" aria-expanded="false" class="question" title="질문">파트너십 사업이 무엇인가요?</a>
+    <video data-video="http://snsvideo.11st.co.kr/movie/item/www/147/14761747_10_1_MQ.mp4" playsinline="" preload="metadata" data-currenttime="0" src="http://snsvideo.11st.co.kr/movie/item/www/147/14761747_10_1_MQ.mp4#t=0" class="c-pick-video--show">
+        <source src="">
+    </video>
+      
+    <progress id="progressBar" value="0" max="100"></progress>
+
+
+
 </div>
 
-<button type="button" aria-expanded="true">26000원</button>
 
-<div style="border:1px solid purple; width: 300px; height: 30px;">
-  <a href="#none"></a>
-</div>
-<br>
+
 <div style="border:1px solid green; width: 300px; height:300px;">
     1번 : <progress class="c-indicator__progress" max="100" value="45.55783480232925"></progress> <br>
     2번 : <progress class="c-indicator__progress" tabindex="0"  aria-label="File upload" aria-valuemin="0" aria-valuenow="60" aria-valuemax="100" max="100" value="45.55783480232925"></progress><br>
@@ -193,39 +170,7 @@ function bc (){
     4번:  <progress role="progressbar" aria-live="assertive" aria-label="54% 업로드 진행중" value="90" aria-valuemin="0" aria-valuemax="100" max="100"></progress>
 </div>
 
-<div>
-    <a href="/ham00/products/284223908?area=stca" role="button" class="link_addition ng-star-inserted" aria-pressed="false">
-        <span class="img_shop ico_wish"></span>찜 <!---->
-    </a><br>
-    <button type="button" aria-pressed="false">
-        <span class="img_shop ico_wish"></span>찜 !! <!---->
-    </button>
-</div>
 
-<div>
-    <a href="#" role="button" class="link_addition ng-star-inserted" aria-pressed="true">
-        <span class="img_shop ico_wish"></span>찜 콩 <!---->
-    </a><br>
-    <button type="button" aria-pressed="true">
-        <span class="img_shop ico_wish"></span>찜 콩!!! <!---->
-    </button>
-</div>
-
-
-<ul class="tab">
-    <li><a href="#main-value-section" title="바로가기">비전</a></li>
-    <li><a href="#our-work-section" title="바로가기">사업영역</a></li>
-    <li><a href="#withus-section" title="바로가기">함께하는 분들</a></li>
-    <li><a href="#contact-section" title="바로가기">오시는 길</a></li>
-</ul>
-<div>
-    <a href="#none" role="button" futhrottleclick="" class="link_addition" aria-describedby="test1">
-        <span class="ani_coin ng-star-inserted">
-            <img alt="" class="img_g" src="https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230830/175515/assets/images/m640/ico_coin_230519.gif?q=1693446753435">
-        </span>
-        공유 
-    </a>
-</div>
 <div class="tooltip_reward on ng-star-inserted" id="test1">
     <span class="ico_tail"></span>
     <div class="desc_tooltip"> 상품 추천하고 <em class="emph_txt">2,697원 받기</em></div>
@@ -250,38 +195,7 @@ function bc (){
 </table>
 
 
-<br>
-<hr>
-<img src="https://www.kt.com/images/area/A000000616/C000009504v4.png" alt=" ">
 
-<div>
-    <button type="button" aria-expanded="false">
-        <span style="display:block">카카오톡 혜택쌓기 서비스 오픈안내</span>
-        <span style="display:block">2023.06.22</span>
-        <span style="display:block"><img src="https://www.kt.com/images/area/A000000616/C000009504v4.png" alt=""></span>
-    </button>
-
-    <!--<canvas id="myCanvas" width="500" height="300"></canvas>-->
-   <br>
-
-    <a href="..." role="button" aria-expanded="true">
-        <span style="display:block">카카오톡 혜택쌓기 서비스 오픈안내</span>
-        <span style="display:block">2023.06.22</span>
-        <span style="display:block"><img src="https://www.kt.com/images/area/A000000616/C000009504v4.png" alt="상세보기"></span>
-     </a>
-
-</div>
-
-
-<div>
-    <div role="heading" aria-level="1"><button type="button">또하나 오마이</button></div>
-    <h1><button type="button">오마이갓</button></h1>
-    <button type="button"><h1>오마이갓</h1></button>
-</div>
-
-    
-<button type="button"  disabled> 참여완료 </button>
-<br>
 <!-- 첨부파일 -->    
 <div>
 
