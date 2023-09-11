@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" id="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+<title>RGBA2</title>
+    
+<script type="text/javascript">
+function convertToHex(decimalValue) {
+    let hexValue = decimalValue.toString(16);
+    return hexValue.length == 1 ? "0" + hexValue : hexValue;
+}
+
+function rgbaToRgb(rgba) {
+    let [r, g, b, a] = rgba;
+    let alpha = a || 1; // default alpha value is 1 if not provided
+    let rValue = Math.round((1 - alpha) * 255 + alpha * r);
+    let gValue = Math.round((1 - alpha) * 255 + alpha * g);
+    let bValue = Math.round((1 - alpha) * 255 + alpha * b);
+    return [rValue, gValue, bValue];
+}
+
+function rgbaToHex(rgba) {
+    let [r, g, b] = rgba;
+    let hexR = convertToHex(r);
+    let hexG = convertToHex(g);
+    let hexB = convertToHex(b);
+    return `#${hexR}${hexG}${hexB}`;
+}
+
+// 사용자로부터 4개의 값 (R, G, B, A)를 입력받음
+let r = prompt("R 값 입력:");
+let g = prompt("G 값 입력:");
+let b = prompt("B 값 입력:");
+let a = prompt("A 값 입력:");
+
+let rgbaArray = [parseInt(r), parseInt(g), parseInt(b), parseFloat(a)];
+
+let rgbArray = rgbaToRgb(rgbaArray);
+let hexCode = rgbaToHex(rgbArray);
+
+console.log(`입력한 RGBA 코드: ${rgbaArray}`);
+console.log(`변환된 RGB 코드: ${rgbArray}`);
+console.log(`변환된 HEX 코드: ${hexCode}`);
+
+</script>
+</head>
+    
+<body>
+ <!-- 내용없음 -->
+    
+</body>
+</html>
