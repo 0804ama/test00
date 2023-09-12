@@ -26,6 +26,28 @@
     
     
 <script type="text/javascript">
+
+
+//진행상태바
+document.addEventListener('DOMContentLoaded', function() {
+    var video = document.getElementById('myVideo'); 
+    var progressBar = document.getElementById('progressBar'); 
+    var progressText = document.getElementById('progressText'); 
+    
+    video.addEventListener('timeupdate', function() {
+        var currentTime = video.currentTime;
+        var duration = video.duration;
+        var progress = (currentTime / duration) * 100;
+        
+        progressBar.value = Math.round(progress);
+        //progressBar.setAttribute('aria-valuenow', Math.round(progress));
+    
+        progressText.textContent = '재생중: ' + Math.round(progress) + '%'; // 숫자를 반올림하여 정수로 표현
+        //progressText.textContent = '재생중: ' + progress.toFixed(2) + '%'; //소수점 이하 2자리까지만 남기고 나머지 반올림
+    });
+});
+
+
 function bc (){
     
     var abcAB = document.getElementById('bcbc');
@@ -44,26 +66,6 @@ function bc (){
     }
    
 }
-
-//진행상태바
-document.addEventListener('DOMContentLoaded', function() {
-    var video = document.getElementById('myVideo'); // 비디오
-    var progressBar = document.getElementById('progressBar'); // 진행상태바
-    var progressText = document.getElementById('progressText'); //숨김텍스트
-    
-    video.addEventListener('timeupdate', function() {
-        var currentTime = video.currentTime;
-        var duration = video.duration;
-        var progress = (currentTime / duration) * 100;
-        
-        progressBar.value = Math.round(progress);
-        //progressBar.setAttribute('aria-valuenow', Math.round(progress));
-    
-        progressText.textContent = '재생중: ' + Math.round(progress) + '%'; // 숫자를 반올림하여 정수로 표현
-        //progressText.textContent = '재생중: ' + progress.toFixed(2) + '%'; //소수점 이하 2자리까지만 남기고 나머지 반올림
-    });
-});
-
 
     
     
