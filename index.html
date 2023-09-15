@@ -42,6 +42,21 @@
         text-align: center;
     }
 
+    .c-ooah-pick__banner__text:first-child {
+        font-family: "Outfit",-apple-system,BlinkMacSystemFont,Roboto,"Noto Sans KR","Apple SD Gothic Neo",arial,sans-serif;
+        font-weight: 500;
+        font-size: 21px;
+        line-height: 25px;
+    }
+    .c-ooah-pick__banner__text {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        white-space: initial;
+        color: #fff;
+    }
+
     .c-ooah-pick__banner__image {
         position: absolute;
         top: 50%;
@@ -54,7 +69,7 @@
         object-fit: cover;
 
     }
-    
+
     .c-ooah-pick__banner::before {
         background-color: rgba(0,0,0,.3);
     }
