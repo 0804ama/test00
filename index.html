@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 <title>테스트</title>
 <style type="text/css">
+    /* 비디오 */
     video::-webkit-media-controls {
         display:none !important;
     }
@@ -21,90 +22,38 @@
         font-size: 6px;
         line-height: 1;
         white-space: nowrap;
+    }     /* 비디오 E */
+
+    .c-ooah-pick__banner {
+     position: relative;
+        display: block;
+        width: 100%;
+        height: 300px;
     }
 
-    .b-layer__modal-close {
+    .c-ooah-pick__banner__inner {
         position: absolute;
-        top: 8px;
-        right: 9px;
-        width: 44px;
-        height: 44px;
-        background: 0 0;
-        border: 2px dotted #02B902;
-        color: transparent;
+        left: 72px;
+        right: 72px;
+        top: 50%;
+        z-index: 3;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        text-align: center;
     }
-    
-    
-    .b-layer__modal-close:before, .b-layer__modal-close:after {
-        content: "";
+
+    .c-ooah-pick__banner__image {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 3px;
-        height: 50px;
-        margin: -27px 0 0 -1px;
-        background: #333;
-    }
-    
+        width: 100%;
+        height: 100%;
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        -o-object-fit: cover;
+        object-fit: cover;
 
-    .b-layer__modal-close:before {
-        -webkit-transform: scale(.5) rotate(45deg);
-        transform: scale(.5) rotate(45deg);
     }
-
-    .b-layer__modal-close:after {
-        -webkit-transform: scale(.5) rotate(-45deg);
-        transform: scale(.5) rotate(-45deg);
-    }
-
-    .c-gnb__cart {
-        background-image: url(/MW/img/common/sprites/sp_gnb2_2023911_133252.png);
-        background-position: -41px 0;
-        width: 36px;
-        height: 36px;
-        background-size: 175.5px 147px;
-        position: absolute;
-        top: 10px;
-        right: 16px;
-        text-indent: -9999px;
-    }
-
-    .c-gnb--ooah-pick .c-gnb__cart .c-badge {
-    -webkit-filter: none;
-    filter: none;
-    padding: 0 4px;
-    background-color: #0f0fd9;
-    font-weight: 700;
-}
-.c-gnb__cart .c-badge {
-    top: -2px;
-    left: initial;
-    right: -3px;
-    font-size: 11px;
-    height: 16px;
-    min-width: 16px;
-    line-height: 16px;
-    padding: 0 3px 0 2px;
-}
-.c-gnb__cart .c-badge {
-    border-radius: 8px;
-    position: absolute;
-    top: 0;
-    left: 70%;
-    height: 16px;
-    min-width: 16px;
-    padding: 0 6px 0 5px;
-    background: #ff0038;
-    font-size: 12px;
-    font-family: Helvetica;
-    text-align: center;
-    text-indent: 0;
-    line-height: 16px;
-    white-space: nowrap;
-    color: #fff;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
 </style>
     
     
@@ -189,11 +138,12 @@ function bc (){
 
 <!-- href 누락 -->
 <div>
-    <a>
-        <div><p>SWAROVSKI</p>
+    <a class="c-ooah-pick__banner" data-log-actionid-area="brand_banner" data-log-actionid-label="banner" data-log-body="{&quot;content_type&quot;:&quot;BANNER&quot;,&quot;content_no&quot;:&quot;1679305540181378001&quot;,&quot;position_l2&quot;:1,&quot;link_url&quot;:&quot;https://m.11st.co.kr/page/pick/detail/1679305540181378001?no=10&amp;from=detail&quot;}" data-is-send-log="true">
+        <div class="c-ooah-pick__banner__inner">
+            <p class="c-ooah-pick__banner__text">SWAROVSKI</p>
             <p class="c-ooah-pick__banner__text">다채로운 컬러를 담은<br> 스와로브스키</p>
         </div>
-        <img src="http://cdn.011st.com/browsing/space/banner/2023/6/7/2306070759073501378_148.jpg" alt="">
+        <img src="http://cdn.011st.com/browsing/space/banner/2023/6/7/2306070759073501378_148.jpg" class="c-ooah-pick__banner__image" alt="">
     </a>
 </div>
 
