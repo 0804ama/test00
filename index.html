@@ -84,6 +84,56 @@
         height: 100%;
         z-index: 2;
     }
+
+
+    .c-gnb__cart {
+        background-image: url(/MW/img/common/sprites/sp_gnb2_2023911_133252.png);
+        background-position: -41px 0;
+        width: 36px;
+        height: 36px;
+        background-size: 175.5px 147px;
+        position: absolute;
+        top: 10px;
+        right: 16px;
+        text-indent: -9999px;
+    }
+
+    .c-gnb--ooah-pick .c-gnb__cart .c-badge {
+        -webkit-filter: none;
+        filter: none;
+        padding: 0 4px;
+        background-color: #0f0fd9;
+        font-weight: 700;
+    }
+    .c-gnb__cart .c-badge {
+        top: -2px;
+        left: initial;
+        right: -3px;
+        font-size: 11px;
+        height: 16px;
+        min-width: 16px;
+        line-height: 16px;
+        padding: 0 3px 0 2px;
+    }
+    .c-gnb__cart .c-badge {
+        border-radius: 8px;
+        position: absolute;
+        top: 0;
+        left: 70%;
+        height: 16px;
+        min-width: 16px;
+        padding: 0 6px 0 5px;
+        background: #ff0038;
+        font-size: 12px;
+        font-family: Helvetica;
+        text-align: center;
+        text-indent: 0;
+        line-height: 16px;
+        white-space: nowrap;
+        color: #fff;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
 </style>
     
     
@@ -160,9 +210,9 @@ function bc (){
 
 
 <!-- 장바구니 -->
-<a href="/"  aria-label="오호라1">
+<a href="//buy.m.11st.co.kr/MW/Hybrid/cart.jsp" class="c-gnb__cart" data-log-actionid-label="cart" data-log-index="4">
     장바구니
-    <span>1</span>
+    <span id="cartCntBdg" class="c-badge">1</span>
 </a>
 
 
