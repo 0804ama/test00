@@ -179,6 +179,25 @@
         word-break: break-all;
         clear: both;
     }
+
+
+    .site-header .sidemenu-toggle {
+        position: absolute;
+        left: 12px;
+        top: 15px;
+        text-indent: -9999px;
+        width: 18px;
+        height: 15px;
+        border: 0;
+        border-radius: 0;
+        background-image: url(../images/ico_renewal.png);
+        -webkit-background-size: 1000px 1000px;
+        background-size: 1000px 1000px;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        background-position: -100px 0;
+        padding: 0;
+    }
 </style>
     
     
@@ -245,6 +264,39 @@ function bc (){
       <a href="#content">본문바로가기</a>
     </div>
 </div>
+
+
+<!--마리웬디 탭 코드-->
+<div class="slick-track" role="tablist">
+	<div class="slick-slide" role="presentation">
+   		<div role="presentation">
+   			<div class="year-btn" role="presentation">
+				<a href="..." role="tab" aria-selected="true" aria-controls="history_2023">2023</a>
+			</div> 
+		</div> 
+	</div>
+    <div role="presentation">
+   		<div role="presentation">
+    		<div class="year-btn" role="presentation">
+				<a href="..." role="tab" aria-selected="false" aria-controls="history_2022">2022</a>
+			</div>  
+		</div> 
+	</div>  
+</div>
+
+<div class="page-content">
+    <div class="history-tabs">
+       <section class="history-tab" id="history_2023" role="tabpanel"> ... </div>
+       <section class="history-tab" id="history_2022" role="tabpanel"> ... </div> 
+       ...
+    </div>
+</div>
+
+
+<button class="sidemenu-toggle">
+    사이드메뉴 토글버튼
+</button>
+
 
 <div>
 	<p>1991.11.11</p>
