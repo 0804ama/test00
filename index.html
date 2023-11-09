@@ -271,10 +271,12 @@ function bc (){
 <script>
     function showAlert() {
         alert('알림입니다!');
+        var Atest = document.getElementById('aaa');
+        Atest.focus();
     }
 </script>
 <form onsubmit="showAlert(); return false;">
-    <input type="text" name="inputField">
+    <input type="text" id="aaa" name="inputField">
     <input type="submit" value="제출">
 </form>
 
