@@ -26,6 +26,7 @@
         border-radius: .25em;
       }
 
+      /*
       #file2 {
         position: absolute;
         width: 1px;
@@ -36,13 +37,14 @@
         overflow: hidden;
         clip: rect(0, 0, 0, 0);
       }
+      */
 
       .file2_1{ /*label*/
         position:absolute;
         top:1px;
         left:1px;
-        width:20px;
-        height:20px;
+        width:30px;
+        height:30px;
       }
 
       .file2_2{ /*input*/
@@ -51,6 +53,12 @@
         left:0;
         width:25px;
         height:25px;
+
+        padding: 0;
+        border: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
       }
       
 
@@ -76,7 +84,7 @@
       <!-- 버튼만 -->
       <div class="filebox"></div>
         <label for="file2" class="file2_1">파일 업로드2</label>
-        <input type="file" id="file2" class="file2_2">
+        <input type="file" class="file2_2">
       </div>
 
 
