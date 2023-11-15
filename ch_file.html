@@ -40,6 +40,11 @@
         margin-top: 10px;
       }
 
+      .filebox.focus{
+        outline: -webkit-focus-ring-color auto 5px;
+
+      }
+
       /* input */
       .file2_2{
         position: absolute;
@@ -78,7 +83,7 @@
       <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/::file-selector-button -->
 
       <!-- 버튼만 -->
-      <div class="filebox">
+      <div class="filebox focus" >
         <label for="file2" class="file2_1">파일 업로드2</label>
         <input type="file" id="file2" class="file2_2">
       </div>
