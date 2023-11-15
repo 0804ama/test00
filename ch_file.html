@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>첨부파일숨김</title>
     <style type="text/css">
-      form input {
+      
+      form .file_edit {
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 5px 10px;
@@ -12,13 +13,57 @@
       .file_edit::file-selector-button {
         display: none;
       }
+
+
+
+      .filebox label{
+        display: inline-block;
+        padding: .5em .75em;
+        background-color: #fdfdfd;
+        color:#999;
+        cursor: pointer;
+        border: 1px solid red;
+        border-radius: .25em;
+      }
+
+      #file2 {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        border: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+      }
+
+
     </style>
   </head>
   <body>
     <form>
       <label for="file-input">파일 업로드</label>
-      <!--<input type="file" class="file_edit" id="file-input">-->
-      <input type="file" id="file_2" placeholder="첨부">
-    </form>
-  </body>
+      <input type="file" class="file_edit" id="file-input">
+      <!-- 기본형 -->
+      <!--<input type="file" placeholder="첨부">-->
+     
+      <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/::file-selector-button -->
+
+      <!-- 버튼만 -->
+      <div class="filebox"></div>
+        <label for="file-input">파일 업로드2</label>
+        <input type="file" id="file2">
+      </div>
+
+
+
+
+
+
+
+
+
+
+</form>
+</body>
 </html>
