@@ -78,9 +78,19 @@ function bc (){
 }
 
 function togle1() {
-    var div = document.getElementById("er1");
+	var div = document.getElementById("er1");
+	var roleAttributeName = "role";
+    	var roleAttributeValue = "alert";
+
+    	var ariaLiveAttributeName = "aria-live";
+   	var ariaLiveAttributeValue = "assertive";
+
+    // 속성이 이미 존재하는지 확인 후 추가
+
     if (div.style.display === "none") {
-      div.style.display = "block";
+	div.style.display = "block";
+    	div.setAttribute(attributeName, attributeValue);
+	div.setAttribute(ariaLiveAttributeName, ariaLiveAttributeValue);
     } else {
       div.style.display = "none";
     }
