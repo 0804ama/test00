@@ -25,6 +25,12 @@
     }     
     /* 비디오 E */
 
+ #er1 {
+      display: none;
+      padding: 20px;
+      background-color: #f0f0f0;
+      margin-top: 10px;
+    }
    
 </style>
     
@@ -71,6 +77,14 @@ function bc (){
    
 }
 
+function togle1() {
+    var div = document.getElementById("er1");
+    if (div.style.display === "none") {
+      div.style.display = "block";
+    } else {
+      div.style.display = "none";
+    }
+  }
     
     
 </script>
@@ -120,6 +134,14 @@ function bc (){
 
 <input type="checkbox" id="ch1"><label for="ch1"> <span id="hi1">혜택 서비스</span> </label>
 <button type="button" aria-expanded="true" aria-describedby="hi1">상세약관</button>
+
+<div>
+	<button type="button" onclick="togle1()">누른다!</button>
+
+	<div id="er1">
+		<p>오류내용입니다</p>
+	</div>
+</div>
 	
 <div>
     
