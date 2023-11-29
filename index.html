@@ -78,22 +78,24 @@ function bc (){
 }
 
 function togle1() {
-	var div = document.getElementById("er1");
-	var roleAttributeName = "role";
-    	var roleAttributeValue = "alert";
+    // 해당 id를 가진 div 가져오기
+    var div = document.getElementById("er1");
 
-    	var ariaLiveAttributeName = "aria-live";
-   	var ariaLiveAttributeValue = "assertive";
+    // display 속성을 block으로 변경하여 보이기
+    div.style.display = "block";
 
-    // 속성이 이미 존재하는지 확인 후 추가
+    // 추가할 ARIA 속성과 값을 정의
+    var roleAttributeName = "role";
+    var roleAttributeValue = "alert";
 
-    if (div.style.display === "none") {
-	div.style.display = "block";
-    	div.setAttribute(attributeName, attributeValue);
-	div.setAttribute(ariaLiveAttributeName, ariaLiveAttributeValue);
-    } else {
-      div.style.display = "none";
-    }
+    var ariaLiveAttributeName = "aria-live";
+    var ariaLiveAttributeValue = "assertive";
+
+    // 속성을 추가
+    div.setAttribute(roleAttributeName, roleAttributeValue);
+    div.setAttribute(ariaLiveAttributeName, ariaLiveAttributeValue);
+
+    console.log("속성이 추가되었습니다.");
   }
     
     
