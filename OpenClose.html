@@ -19,6 +19,7 @@ function toggleDiv() {
   var myDiv = document.getElementById('myDiv');
   if (myDiv.style.display === 'none') {
     myDiv.style.display = 'block';
+    myDiv.setAttribute('aria-hidden','false');
   } else {
     myDiv.style.display = 'none';
     myDiv.setAttribute('aria-hidden','true');
