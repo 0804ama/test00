@@ -15,15 +15,14 @@
     
     
 <script type="text/javascript">
-  document.getElementById('myButton').addEventListener('click', function() {
-    var myDiv = document.getElementById('myDiv');
-    if (myDiv.style.display === 'none') {
-      myDiv.style.display = 'block';
-    } else {
-      myDiv.style.display = 'none';
-    }
-  });
-    
+document.getElementById('myButton').addEventListener('click', function() {
+  var myDiv = document.getElementById('myDiv');
+  if (myDiv.style.display === 'none') {
+    myDiv.style.display = 'block';
+  } else {
+    myDiv.style.display = 'none';
+  }
+});
     
 </script>
 </head>
@@ -31,7 +30,7 @@
 <body>
 
 <button id="myButton">Toggle</button>
-<div id="myDiv">이거?</div>
+<div id="myDiv" style="display:none;">이거?</div>
 
 
     
