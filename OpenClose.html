@@ -32,9 +32,9 @@ function toggleDiv() {
 
 function toggleDivVisibility(chk1, myDiv2) {
   var checkbox = document.getElementById(chk1);
-  var myDiv2 = document.getElementById(myDiv2);
+  var Div2 = document.getElementById(myDiv2);
 
-  if (checkbox && myDiv2) {
+  if (checkbox && Div2) {
     checkbox.addEventListener('change', function() {
       if (this.checked) {
         div.style.display = 'block';
@@ -43,7 +43,7 @@ function toggleDivVisibility(chk1, myDiv2) {
       }
     });
   } else {
-    console.error('No checkbox with id ' + checkbox + ' or no div with id ' + myDiv2 + ' found.');
+    console.error('No checkbox with id ' + checkbox + ' or no div with id ' + Div2 + ' found.');
   }
 }
 
