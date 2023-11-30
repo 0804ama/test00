@@ -59,6 +59,9 @@ function checkSecurityCode() {
 
     if (input !== '123456') { 
         errorMessage.style.display = 'block';
+        errorMessage.setAttribute('aria-live','assertive');
+        errorMessage.setAttribute('aria-relevant','all');
+        errorMessage.setAttribute('role','alert');
     } else {
         errorMessage.style.display = 'none';
     }
