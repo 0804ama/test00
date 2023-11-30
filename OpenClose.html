@@ -21,6 +21,7 @@ function toggleDiv() {
     myDiv.style.display = 'block';
     //myDiv.setAttribute('aria-hidden','false');
     //myDiv.romoveAttribute('aria-hidden');
+    myDiv.setAttribute('aria-describedby','myDiv');
   } else {
     myDiv.style.display = 'none';
     //myDiv.setAttribute('aria-hidden','true');
@@ -32,7 +33,7 @@ function toggleDiv() {
     
 <body>
 
-  <button id="myButton" onclick="toggleDiv()" aria-describedby="myDiv">토글</button>
+  <button id="myButton" onclick="toggleDiv()">토글</button>
   <div id="myDiv" style="display: none;">안내안내
     <a href="">도움말</a>
   </div>
