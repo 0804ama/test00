@@ -55,8 +55,12 @@ toggleDivVisibility('chk1', 'myDiv2');
 
 function myFunction() {
   var x = document.getElementById("myInput").value;
+  var pMsg_answer1 = document.getElementById("pMsg_answer").value;
+
   if (x.length == 6) {
     document.getElementById("pMsg_answer").innerHTML = "맞습니다";
+    pMsg_answer1.setAttribute('role', 'alert');
+    
   } else {
     document.getElementById("pMsg_answer").innerHTML = "";
   }
