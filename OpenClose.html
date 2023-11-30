@@ -32,7 +32,7 @@ function toggleDiv() {
 
 
 
-
+/*
 function toggleDivVisibility(chk1, myDiv2) {
   var checkbox = document.getElementById(chk1);
   var Div2 = document.getElementById(myDiv2);
@@ -51,6 +51,18 @@ function toggleDivVisibility(chk1, myDiv2) {
 }
 
 toggleDivVisibility('chk1', 'myDiv2');
+*/
+
+function checkSecurityCode() {
+    var input = document.getElementById('security-code').value;
+    var errorMessage = document.getElementById('error-message');
+
+    if (input !== '123456') { 
+        errorMessage.style.display = 'block';
+    } else {
+        errorMessage.style.display = 'none';
+    }
+}
 
 
 </script>
@@ -67,6 +79,10 @@ toggleDivVisibility('chk1', 'myDiv2');
   <div id="myDiv2" style="display: none;">안내안내222
     <a href="">도움말22</a>
   </div>
+
+  <input type="text" id="security-code" placeholder="보안 문자를 입력하세요" maxlength="6">
+    <button onclick="checkSecurityCode()">확인</button>
+    <div id="error-message">보안 문자가 잘못되었습니다!</div>
 
 
     
