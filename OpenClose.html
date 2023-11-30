@@ -15,22 +15,22 @@
     
     
 <script type="text/javascript">
-document.getElementById('myButton').addEventListener('click', function() {
+function toggleDiv() {
   var myDiv = document.getElementById('myDiv');
   if (myDiv.style.display === 'none') {
     myDiv.style.display = 'block';
   } else {
     myDiv.style.display = 'none';
   }
-});
+}
     
 </script>
 </head>
     
 <body>
 
-<button id="myButton">Toggle</button>
-<div id="myDiv" style="display:none;">이거?</div>
+  <button id="myButton" onclick="toggleDiv()">Toggle</button>
+  <div id="myDiv" style="display: none;">Hello, World!</div>
 
 
     
