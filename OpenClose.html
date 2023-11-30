@@ -28,7 +28,28 @@ function toggleDiv() {
     //myDiv.setAttribute('aria-hidden','true');
   }
 }
-    
+
+
+function toggleDivVisibility(chk1, myDiv2) {
+  var checkbox = document.getElementById(chk1);
+  var myDiv2 = document.getElementById(myDiv2);
+
+  if (checkbox && myDiv2) {
+    checkbox.addEventListener('change', function() {
+      if (this.checked) {
+        div.style.display = 'block';
+      } else {
+        div.style.display = 'none';
+      }
+    });
+  } else {
+    console.error('No checkbox with id ' + checkbox + ' or no div with id ' + myDiv2 + ' found.');
+  }
+}
+
+toggleDivVisibility('chk1', 'myDiv2');
+
+
 </script>
 </head>
     
@@ -39,7 +60,10 @@ function toggleDiv() {
     <a href="">도움말</a>
   </div>
   
-  
+  <input type="checkbox" id="chk1">
+  <div id="myDiv2" style="display: none;">안내안내222
+    <a href="">도움말22</a>
+  </div>
 
 
     
