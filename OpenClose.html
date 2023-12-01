@@ -73,11 +73,9 @@ function myFunction() {
 			var myInput1 = document.getElementById("myInput");
 			var pMsg_answer1 = document.getElementById("pMsg_answer");
 
-			if (myInput1.value === "1111") {
+			if (myInput1.value.length === 6 && myInput1.value[5] === "6") {
 				pMsg_answer1.style.display = "block";
-			} else {
-        pMsg_answer1.style.display = "none";
-      }
+			}
 }
 
 
@@ -99,7 +97,7 @@ function myFunction() {
 
 
   <input type="text" id="myInput" maxlength="6" onkeypress="myFunction()" placeholder="값 입력" aria-describedby="pMsg_answer">
-  <div id="pMsg_answer" style="display: none;" role="alert">보안문자를 다시 입력해주세요</div>
+  <div id="pMsg_answer" style="display: none;" role="alert" aria-live="assertive">보안문자를 다시 입력해주세요</div>
   
 
 
