@@ -33,14 +33,15 @@ function toggleDiv() {
 
 function myFunction() {
 
-			var myInput1 = document.getElementById("myInput");
-			var pMsg_answer1 = document.getElementById("pMsg_answer");
+  var myInput1 = document.getElementById("myInput");
+  var pMsg_answer1 = document.getElementById("pMsg_answer");
 
-			if (myInput1.value == '1') {
-				pMsg_answer1.style.display = "block";
-			} else {
-        pMsg_answer1.style.display = "none";
-      }
+  if (myInput1.value == '1') {
+    pMsg_answer1.style.display = "block";
+  } else {
+    pMsg_answer1.style.display = "none";
+  }
+  
 }
 
 
@@ -61,8 +62,11 @@ function myFunction() {
   </div>
 
 
-  <input type="text" id="myInput" maxlength="6"  placeholder="값 입력" onkeypress="myFunction()">
-  <div id="pMsg_answer" style="display: none;" role="alert">정답</div>
+  <input type="text" id="myInput" maxlength="6"  placeholder="값 입력" aria-describedby="pMsg_answer" onkeypress="myFunction()">
+  <div id="pMsg_answer" style="display: none;" >정답</div>
+
+
+
   
 
 
