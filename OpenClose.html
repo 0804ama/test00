@@ -38,6 +38,7 @@ function myFunction() {
 
   if (myInput1.value == '1') {
     pMsg_answer1.style.display = "block";
+    pMsg_answer1.setAttribute('role','alert');
   } else {
     pMsg_answer1.style.display = "none";
   }
@@ -64,9 +65,6 @@ function myFunction() {
 
   <input type="text" id="myInput" maxlength="6"  placeholder="값 입력" aria-describedby="pMsg_answer" onkeypress="myFunction()">
   <div id="pMsg_answer" style="display: none;" >정답</div>
-
-  <input type="text" id="myInput2" placeholder="아무거나" aria-describedby="pMsg_answer2">
-  <div id="pMsg_answer2" style="display: block;" >하이</div>
 
 
 
