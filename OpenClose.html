@@ -39,6 +39,9 @@ function myFunction() {
   if (myInput1.value == '1') {
     pMsg_answer1.style.display = "block";
     pMsg_answer1.setAttribute('role','alert');
+    pMsg_answer1.setAttribute('aria-live','assertive');
+    pMsg_answer1.setAttribute('aria-relevant','all');
+
   } else {
     pMsg_answer1.style.display = "none";
   }
