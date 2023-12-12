@@ -121,13 +121,29 @@ function togle1() {
     </div>
 </div>
 
-<div aria-expanded="true">
-    <p>dsdfsdf</p>
-</div>
 
-<button type="button" class="sidemenu-toggle">
-    <span>사이</span>
-</button>
+
+<ul class="img-tab__list" role="tablist">
+    <li class="img-tab__item" role="presentation">
+        <a href="#arImgTabpanel00" id="arImgTab00" class="img-tab__link" role="tab" aria-controls="arTabpanel00" aria-selected="false" tabindex="-1">Checkbox</a>
+    </li>
+    <li class="img-tab__item img-tab__item--active" role="presentation">
+        <a href="#arImgTabpanel01" id="arImgTab01" class="img-tab__link" role="tab" aria-controls="arTabpanel01" aria-selected="true" tabindex="0">Checkmark</a>
+    </li>
+</ul>
+<span id="arImgTabpanel01" class="item__image" role="tabpanel" tabindex="0">
+    <div data-gatsby-image-wrapper="" style="max-width: 470px;" class="gatsby-image-wrapper gatsby-image-wrapper-constrained">
+        <div style="max-width:940px;display:block">
+            <img alt="" role="presentation" aria-hidden="true" src=""></div>
+            <div aria-hidden="true" data-placeholder-image="" style="opacity:0;transition:opacity 500ms linear;object-fit:contain"></div>
+            <picture>
+                <source type="image/webp" srcset=""><img width="940" height="296" data-main-image="" style="object-fit:contain;opacity:1" sizes="(min-width: 940px) 940px, 100vw" decoding="async" loading="lazy" src="/static/d142451c12aa10c2e4475f6815d35a37/7dbdb/checkbox_type_checkmark.png" srcset="" alt="Checkmark Type checkbox Component"></picture>
+            </picture>
+        </div>
+    </div>
+</span>
+
+
 
 <a href="" aria-describedby="atest1">
     <img src="https://www.kt.com/images/area/A000000616/C000009504v4.png" alt="티아이디">
