@@ -87,14 +87,30 @@ function myFunction() {
   </button>
   
 
-  <button type="button" aria-describedby="brandName01">
-    <span >찜하기</span><!-- '찜해제'를 '찜하기'로 수정 -->
- </button>
- <a href="">
-    <strong class="c-item__title">A.P.C.</strong>
-    <span class="c-item__title-sub" id="brandName01">아페쎄</span>
+  <a href="" id="test9" aria-label="뉴브릿지 NEWBRIDGE 여성 경량 후드 하프 패딩 3색상 8018558, 가격정보 572,460원"> 
+    <div class="c-n-product__thumb">
+       <div>
+          <img src="" alt=""><!-- role 속성 제거 -->
+       </div>
+    </div>
+    <div class="c-n-product__info" aria-hidden="true">
+       <dl>
+          <div>
+             <dt class="sr-only">가격정보</dt>
+             <dd>
+                <span class="price-origin">
+                   <strong>572,460</strong>원
+                </span>
+             </dd>
+          </div>
+       </dl>
+    </div>   
  </a>
- <button type="button" aria-describedby="brandName01">상품 목록 접기</button>
+ <div class="c-n-product__buttons">
+    <button type="button" aria-describedby="test9" aria-pressed="false">
+       <span class="sr-only">찜하기</span>
+    </button>
+ </div>
     
 </body>
 </html>
