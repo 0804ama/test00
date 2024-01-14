@@ -80,33 +80,35 @@ function myFunction() {
   <li class="ra-tab-menu__item">
     <a href="/g/300086598/files" role="tab" aria-selected="false">파일</a>
   </li>
-  <li class="ra-tab-menu__item">
-    <a href="/g/300086598/schedules" role="tab" aria-selected="false">일정</a>
-  </li>
-  <li class="ra-tab-menu__item">
-    <a href="/g/300086598/notes" role="tab" aria-selected="false">노트</a>
-  </li>
-  <li class="ra-tab-menu__item">
-    <a href="/g/300086598/requests" role="tab" aria-selected="false">요청</a>
-  </li>
+ 
 </ul>
 <div role="tabpanel" id="tabcontent1" aria-labelledby="tab1">
   <p>안녕</p>
 </div>
 
+<input type="radio" name="ag" value="0">00
+<input type="radio" name="ag" value="1">11
+<input type="radio" name="ag" value="2">22
+<input type="radio" name="ag" value="3">33
 
-<ul class="ra-tab-menu tab-menu__group" role="tablist">
-  <li class="ra-tab-menu__item ra-tab-menu__item--active" >
-    <a href="/g/300086598/wall" role="tab" aria-selected="true">전체</a>
-  </li>
-  <li class="ra-tab-menu__item" role="tab" aria-selected="false">
-    <a href="/g/300086598/members">멤버</a>
-  </li>
-  <li class="ra-tab-menu__item" role="tab" aria-selected="false">
-    <a href="/g/300086598/images">사진</a>
-  </li>
-</ul>
-
+<div class="request-status-indicator task-status__status" aria-label="요청 글 상태 설정">
+  <span class="request-status-indicator__status-button request-status-indicator__status-button--0">
+    <input type="radio" id="0394371256" name="status[394371256]" value="0">
+    <label for="0394371256">요청</label>
+  </span>
+  <span class="request-status-indicator__status-button request-status-indicator__status-button--3">
+    <input type="radio" id="3394371256" name="status[394371256]" value="3">
+    <label for="3394371256">승인</label>
+  </span>
+  <span class="request-status-indicator__status-button request-status-indicator__status-button--1">
+    <input type="radio" id="1394371256" name="status[394371256]" value="1">
+    <label for="1394371256">진행</label>
+  </span>
+  <span class="request-status-indicator__status-button request-status-indicator__status-button--2 request-status-indicator__status-button--active">
+    <input type="radio" id="2394371256" name="status[394371256]" value="2" checked="">
+    <label for="2394371256">완료</label>
+  </span>
+</div>
 
 <button type="button" aria-expanded="true">야호</button>
 
