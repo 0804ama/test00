@@ -77,15 +77,17 @@ function myFunction() {
 </select>
 
 
-    <div class="chat_info" id="bubble-0">        
-    <p>            
-        🎖 말풍선을 꾹~ 누르고 댓글을 달아보세요!             
-        ...(생략)...            
-        운영정책에 따라 서비스 이용에 제한을 받을 수 있습니다.        
-    </p>        
-    <span role="button">자세히 보기</span>    
-</div>
-
+<ul class="list_tab" role="tablist">        
+    <li role="presentation">            
+        <button id="tab-0" role="tab" aria-selected="true" aria-controls="tabpan-0">첫번째 채널</button>
+    </li>
+    <li role="presentation">            
+        <button id="tab-1" role="tab" aria-selected="false" aria-controls="tabpan-1">두번째 채널</button> 
+    </li>
+    <li role="presentation">            
+        <button id="tab-2" role="tab" aria-selected="false" aria-controls="tabpan-2">세번째 채널</button> 
+    </li>
+</ul> 
 
 
 <input type="text" id="myInput" maxlength="6"  placeholder="값 입력"  onkeypress="myFunction()">
