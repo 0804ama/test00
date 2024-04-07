@@ -77,6 +77,25 @@ function bc (){
    
 }
 
+/* 전자증명서 */
+function jun(){
+  var jun1 = document.getElementById('infoTitle');
+
+   
+    
+    if (jun1.style.display === 'none') {
+      jun1.style.display = 'block';
+     
+    } else {
+      jun1.style.display = 'none';
+    }
+	
+}
+
+
+
+/* e 전자증명서 */	
+
 function togle1() {
     // 해당 id를 가진 div 가져오기
     var div = document.getElementById("er1");
@@ -125,11 +144,25 @@ function togle1() {
 
 <div>
 	<button type="button" onclick="togle1()">누른다!</button>
-
+	
 	<div id="er1">
 		<p>오류내용입니다</p>
 	</div>
 </div>
+
+<!-- 전자증명서 -->
+<div id="tabCertMyPanel">
+	<button type="button" class="btn_tooltip" aria-expanded="false" aria-controls="infoTitle" onclick="jun()">
+		<span class="icon icon_info2">도움말</span> 
+	</button>
+	<div id="infoTitle" style="display:none;">
+		90일 이내 발급된 증명서만 확인할 수 있습니다. 
+	</div>
+</div>
+<!-- e 전자증명서 -->
+
+
+
 	
 <div>
     <a href="#" aria-label="하나있을때">
