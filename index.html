@@ -131,17 +131,19 @@ function togle1() {
 </a>
 
 <ul role="tablist">
-  <li ><!-- role="presentation" 속성 추가 -->
-    <button type="button" role="tab" aria-selected="false" role="presentation">발급신청</button>
+  <li role="presentation"><!-- role="presentation" 속성 추가 -->
+    <button type="button" role="tab" aria-selected="false" aria-controls="aa2">발급신청</button>
   </li> 
-  <li><!-- role="presentation" 속성 추가 -->
-     <button type="button" role="tab" aria-selected="true" role="presentation">내 증명서</button>
+  <li role="presentation"><!-- role="presentation" 속성 추가 -->
+     <button type="button" role="tab" aria-selected="true" aria-controls="aa3">내 증명서</button>
   </li>
-  <li><!-- role="presentation" 속성 추가 -->
-    <button type="button" role="tab" aria-selected="false" role="presentation">보냄·받음</button>
+  <li role="presentation"><!-- role="presentation" 속성 추가 -->
+    <button type="button" role="tab" aria-selected="false" aria-controls="aa4">보냄·받음</button>
   </li>
 </ul>
-
+<div id="aa2">
+	<p>sdfsdfsdf</p>
+</div>
 <div>
   <p>안녕</p>
   <svg role="img">
