@@ -92,7 +92,9 @@ function jun(){
 	
 }
 
-
+function moveFocus() {
+    document.getElementById("tar1").focus();
+}
 
 /* e 전자증명서 */	
 
@@ -129,6 +131,9 @@ function togle1() {
 <a href="https://purme.org/report/financial-report">
     <img src="https://www.kt.com/images/area/A000000616/C000009504v4.png">
 </a>
+
+<button type="button" onclick="moveFocus()">이동</button>
+<h2 id="tar1"><span> 도도도 </span></h2>
 
 <ul role="tablist">
   <li role="presentation"><!-- role="presentation" 속성 추가 -->
