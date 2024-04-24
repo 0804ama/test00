@@ -132,6 +132,36 @@ function togle1() {
     <img src="https://www.kt.com/images/area/A000000616/C000009504v4.png">
 </a>
 
+<a href="" aria-label="상품명, 블랭크라벨 / LULU PINTUCK CROP T-SHIRT [WHITE], 가격정보, 18,050원"> <!-- aria-label 속성 추가 -->
+  <div class="c-n-product__thumb">
+    <span class="c-lazyload c-lazyload--ratio_3x4 c-lazyloaded">
+    <img src="" alt=""><!-- 불필요한 role="" 속성 제거 -->
+    </span>
+  </div>
+  <div class="c-n-product__info" aria-hidden="true"> <!-- aria-hidden="true" 속성 추가 -->
+    <dl>
+      <div class="c-n-product__name sr-only">
+        <dt class="sr-only">상품명</dt>
+        <dd id="product01">블랭크라벨 / LULU PINTUCK CROP T-SHIRT [WHITE]</dd> <!-- 상품명에 id 속성 제공 -->
+      </div>
+      <div class="c-n-product__price">
+        <dt class="sr-only">가격정보</dt>
+        <dd><span class="price-origin">
+		<strong>18,050</strong>
+		원</span>
+	</dd>
+      </div>
+    </dl>
+  </div>
+</a>
+<div class="c-n-product__buttons">
+  <button aria-describedby="product01"> <!-- aria-describedby 속성 제공 -->
+    <span class="sr-only">찜하기</span>
+  </button>
+</div>
+
+	
+
 <h3><label for="a12">지갑주소</label></h3>
 <input type="text" id="a12" readonly>
 
