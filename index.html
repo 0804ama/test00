@@ -102,6 +102,29 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+/*  타이머 s */
+var time = 600 //기준시간
+var min =""; //분
+var sec=""; //초
+
+//setInterval(함수, 시간) : 주기적인 실행
+var x = setInterval(function() {
+	//parseInt() : 정수를 반환
+	min = parseInt(time/60); 
+	sec = time%60;
+
+	document.getElementById("demo").innerHTML = min + "분" + sec + "초";
+	time--;
+
+	//타임아웃 시
+	if (time < 0) {
+		clearInterval(x); //setInterval() 실행을 끝냄
+		document.getElementById("demo").innerHTML = "시간초과";
+	}
+}, 1000);
+/*  타이머 e */	
+
+	
 function bc (){
     
     var abcAB = document.getElementById('bcbc');
@@ -180,6 +203,11 @@ function togle1() {
 <input placeholder="00000" aria-disabled="false" aria-placeholder="00000" aria-hidden="false" type="number" inputmode="numeric" maxlength="5" value="" style="max-width: 57px;">
 <input aria-disabled="false" aria-placeholder="00000" aria-hidden="false" type="number" inputmode="numeric" maxlength="5" value="" style="max-width: 57px;">
 <input aria-disabled="false"  placeholder="00000" aria-hidden="false" type="text" inputmode="numeric" maxlength="5" value="" style="max-width: 57px;">
+
+<!-- 타이머 -->
+<div id="demo">ㅇㅎㅎㅇㅎㅇ</div>
+	
+
 
 	
 <button type="button" aria-label="취소" aria-hidden="true">휴휴휴</button>
