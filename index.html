@@ -159,6 +159,16 @@
     height: 72px;
     margin: 14px auto 0;
 }
+
+.blind {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    clip: rect(0 0 0 0);
+}
 </style>
     
     
@@ -282,6 +292,56 @@ function togle1() {
 	</svg>
 </button>
 
+<ul class="list">
+  <li>
+    <div class="lottoball_box">
+      <span class="blind">낙첨 번호:3, 7, 19, 20, 22, 40</span> <!-- 숨김텍스트 제공-->
+      <div aria-hidden="true"> <!--div로 감싸고 aria-hidden="true" 속성 제공-->
+        <span class="ball fail">3</span>
+        <span class="ball fail">7</span>
+        <span class="ball fail">19</span>
+        <span class="ball fail">20</span>
+        <span class="ball fail">22</span>
+        <span class="ball fail">40</span>
+      </div>
+      <span class="time">
+        <i>미션로또</i>18:06:52</span>
+    </div>
+  </li>
+  <li>
+    <div class="lottoball_box">
+      <span class="blind">당첨번호:24, 38, 낙첨 번호:21, 28, 34, 40</span> <!-- 숨김텍스트 제공-->
+      <div aria-hidden="true"> <!--div로 감싸고 aria-hidden="true" 속성 제공-->
+        <span class="ball fail">21</span>
+        <span class="ball col_type03">24</span>
+        <span class="ball fail">28</span>
+        <span class="ball fail">34</span>
+        <span class="ball col_type04">38</span>
+        <span class="ball fail">40</span>
+      </div>
+      <span class="time">
+        <i>미션로또</i>15:30:23</span>
+    </div>
+  </li>
+  <li>
+    <div class="lottoball_box">
+      <span class="blind">당첨번호:32, 38, 44 낙첨 번호:12, 17, 40</span> <!-- 숨김텍스트 제공-->
+      <div aria-hidden="true"> <!--div로 감싸고 aria-hidden="true" 속성 제공-->
+        <span class="ball fail">12</span>
+        <span class="ball fail">17</span>
+        <span class="ball col_type04">32</span>
+        <span class="ball col_type04">38</span>
+        <span class="ball fail">40</span>
+        <span class="ball col_type05">44</span>
+      </div>
+      <span class="time">
+        <i>출첵로또</i>15:29:01</span>
+    </div>
+    ..(생략)..
+  </li>
+</ul>
+
+	
 <a href="">
   <div role="text"><!-- role="text" 속성 제공 -->
     <div class="bundle_viedo">ㄴㄹㄴㄹㄶ</div>
