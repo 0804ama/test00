@@ -34,140 +34,16 @@
 
 /* 11번가 */
 
-.m_nav li a {
-    display: block;
-    position: relative;
-    padding: 2px 10px;
-    color: #333;
-    line-height: 39px;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.m_nav li.on .c-badge-beta {
-    width: 25px;
-    height: 11px;
-    background-position: -124px -128.61834px;
-    background-size: 383px 337px;
-}
-
-.m_nav .c-badge-beta {
-    display: inline-block;
-    vertical-align: top;
-    background: url(/MW/img/svg/sprites/sp_common_202444_113440.svg) no-repeat;
-    width: 25px;
-    height: 11px;
-    background-position: -124px -109.67456px;
-    background-size: 383px 337px;
-    overflow: hidden;
-    font-size: 1px;
-    color: transparent;
-    vertical-align: 2px;
-    margin-left: 2px;
-}
-
-.m_nav li a:after {
-    height: 2px;
-    width: 100%;
+.c-gnb__cart {
+    background-image: url(/MW/img/common/sprites/sp_gnb2_2024319_100833.png);
+    background-position: -41px -41.5px;
+    width: 36px;
+    height: 36px;
+    background-size: 188.5px 136.5px;
     position: absolute;
-    left: 0;
-    bottom: 0;
-    background: 0 0;
-    -webkit-transform: scaleY(.1);
-    transform: scaleY(.1);
-    content: "";
-}
-
-
-.ico_store2 {
-    display: inline-block;
-    overflow: hidden;
-    background: url(ico_store2_240415.png) no-repeat 0 0;
-    background-size: 225px 405px;
-    vertical-align: top;
+    top: 10px;
+    right: 16px;
     text-indent: -9999px;
-}
-
-.tit_livespecial {
-    padding-bottom: 20px;
-    font-size: 0;
-    line-height: 0;
-}
-
-.popup-present .present__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-.popup-present .present__item {
-    overflow: hidden;
-    position: relative;
-    height: 156px;
-    margin: 4px;
-    border: 2px solid #402008;
-    border-radius: 12px;
-    background-color: #fff;
-    text-align: center;
-}
-.popup-present .label {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    cursor: pointer;
-}
-.popup-present .present__info {
-    height: 100%;
-    padding-top: 8px;
-}
-.popup-present .present__flag {
-    position: absolute;
-    top: 9px;
-    left: 9px;
-    height: 19px;
-    padding: 0 6px;
-    border-radius: 12px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffd609), to(#ff8f30));
-    background: -webkit-linear-gradient(top, #ffd609 0, #ff8f30 100%);
-    background: linear-gradient(180deg, #ffd609 0, #ff8f30 100%);
-    -webkit-box-shadow: 1px -1px 2px 0 #ff6b00 inset, 2px 2px 4px 0 rgba(255, 255, 255, .3) inset, 1px 1px 2px 0 #f5bf35 inset;
-    box-shadow: 1px -1px 2px 0 #ff6b00 inset, 2px 2px 4px 0 rgba(255, 255, 255, .3) inset, 1px 1px 2px 0 #f5bf35 inset;
-    font-size: 11px;
-    color: #fff;
-    text-align: center;
-    font-weight: 800;
-    line-height: 19px;
-    text-shadow: -1px 0 #ff8239, 0 1px #ff8239, 1px 0 #ff8239, 0 -1px #ff8239;
-}
-.popup-present .present__image {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    width: 132px;
-    height: 72px;
-    margin: 14px auto 0;
-}
-
-.blind {
-    display: block;
-    position: absolute;
-    overflow: hidden;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    clip: rect(0 0 0 0);
 }
 </style>
     
@@ -291,6 +167,9 @@ function togle1() {
 		<path fill="#060B11" fill-rule="evenodd" d="M12 2c5.523 0"></path>
 	</svg>
 </button>
+<div>
+	<a href="//buy.m.11st.co.kr/MW/Cart/cartList.tmall" class="c-gnb__cart" data-log-actionid-label="cart">장바구니</a>
+</div>
 <div>
 	<object data="https://cdn.011st.com/ui_img/cm_display/2024/my_ball.svg" type="image/svg+xml" aria-label="로또공"></object>
 </div>
