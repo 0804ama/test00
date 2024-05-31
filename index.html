@@ -92,6 +92,73 @@
     font-size: 0;
     line-height: 0;
 }
+
+.popup-present .present__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.popup-present .present__item {
+    overflow: hidden;
+    position: relative;
+    height: 156px;
+    margin: 4px;
+    border: 2px solid #402008;
+    border-radius: 12px;
+    background-color: #fff;
+    text-align: center;
+}
+.popup-present .label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.popup-present .present__info {
+    height: 100%;
+    padding-top: 8px;
+}
+.popup-present .present__flag {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    height: 19px;
+    padding: 0 6px;
+    border-radius: 12px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffd609), to(#ff8f30));
+    background: -webkit-linear-gradient(top, #ffd609 0, #ff8f30 100%);
+    background: linear-gradient(180deg, #ffd609 0, #ff8f30 100%);
+    -webkit-box-shadow: 1px -1px 2px 0 #ff6b00 inset, 2px 2px 4px 0 rgba(255, 255, 255, .3) inset, 1px 1px 2px 0 #f5bf35 inset;
+    box-shadow: 1px -1px 2px 0 #ff6b00 inset, 2px 2px 4px 0 rgba(255, 255, 255, .3) inset, 1px 1px 2px 0 #f5bf35 inset;
+    font-size: 11px;
+    color: #fff;
+    text-align: center;
+    font-weight: 800;
+    line-height: 19px;
+    text-shadow: -1px 0 #ff8239, 0 1px #ff8239, 1px 0 #ff8239, 0 -1px #ff8239;
+}
+.popup-present .present__image {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 132px;
+    height: 72px;
+    margin: 14px auto 0;
+}
 </style>
     
     
@@ -225,7 +292,29 @@ function togle1() {
     <span class="text_benefit">안녕3</span>
   </div>
 </a>
+<hr>
 
+<ul class="present__list">
+	<li class="present__item">
+		<input type="radio" name="호정가 옛날 도나스 16개입" id="lbPresentCont00" value="1">
+		<label class="label" for="lbPresentCont00">
+			<span class="label__text">호정가 옛날 도나스 16개입</span>
+		</label>
+		<div class="present__info"><span class="present__flag">인기최고</span>
+			<span class="present__image"><img src="https://cdn.011st.com/ui_img/kitten_img/kitten_product_06.png" alt="호정가 옛날 도나스 16개입"></span>
+		</div>
+	</li>
+	<li class="present__item">
+		<input type="radio" name="항진축산 원 프리미엄 육포 (18g x 7개)" id="lbPresentCont01" value="2">
+		<label class="label" for="lbPresentCont01">
+			<span class="label__text">항진축산 원 프리미엄 육포 (18g x 7개)</span>
+		</label>
+		<div class="present__info">
+			<span class="present__flag">품질보장</span>
+			<span class="present__image"><img src="https://cdn.011st.com/ui_img/kitten_img/kitten_product_07.png" alt="항진축산 원 프리미엄 육포 (18g x 7개)"></span>
+		</div>
+	</li>
+</ul>
 	
 <button aria-haspopup="dialog" aria-controls="dialog1">메로나</button>
 <div id="dialog1" role="dialog" aria-hidden="true">
