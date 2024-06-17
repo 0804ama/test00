@@ -178,15 +178,21 @@ function togle1() {
 <button type="button"><h2>애플</h2></button>
 <h2><button type="button">애플3</button></h2>
 
-<ul role="tab">
+<ul role="tablist">
   <li role="presentation">
-    <button type="button" role="tab" aria-selected="true" aria-controls="0">경유</button>
+    <button type="button" role="tab" aria-selected="true" aria-controls="abn1">경유</button>
   </li>
   <li role="presentation">
-    <button type="button" role="tab" aria-selected="false" aria-controls="1">시각</button>    
+    <button type="button" role="tab" aria-selected="false" aria-controls="abn2">시각</button>    
   </li>
   ... (중략) ...
 </ul>
+<div id="abn1">
+	<p>이건 내용1</p>
+</div>
+<div id="abn2">
+	<p>이건 내용2</p>
+</div>
 	
 <select>
 	<option>농협</option>
