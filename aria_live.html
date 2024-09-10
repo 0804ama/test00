@@ -57,17 +57,19 @@
 <script type="text/javascript">
 
  /* role alert s */
-// Function to validate input value when Enter key is pressed
-  document.getElementById('loginId1').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-      var inputValue = this.value;
-      if (inputValue !== '12') {
-        document.getElementById('error-message').style.display = 'block'; // Show error message
-      } else {
-        document.getElementById('error-message').style.display = 'none'; // Hide error message
+ document.addEventListener('DOMContentLoaded', function() {
+    // Function to validate input value when Enter key is pressed
+    document.getElementById('loginId1').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        var inputValue = this.value;
+        if (inputValue !== '12') {
+          document.getElementById('error-message').style.display = 'block'; // Show error message
+        } else {
+          document.getElementById('error-message').style.display = 'none'; // Hide error message
+        }
+        event.preventDefault(); // Prevent form submission or any other action on Enter
       }
-      event.preventDefault(); // Prevent form submission or any other action on Enter
-    }
+    });
   });
  /* role alert e */
 
