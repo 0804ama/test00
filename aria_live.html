@@ -204,19 +204,19 @@ function togle1(tx_id) {
 <!-- 초기 마크업 안됨 s --> 
 <div lang="ko" class="container">
   <!-- 1s -->
-  <div class="bak1">
+  <div class="bak1" id="box1">
     <p id="text1">첫번째 영역</p>
     <button type="button" onclick="togle1('text1')">role="alert"</button>
   </div><!-- 1e -->
 
   <!-- 2s -->
-  <div class="bak1">
+  <div class="bak1" id="box2">
     <p id="text2">두번째 영역</p>
     <button type="button" onclick="togle1('text2')">assertive</button>
   </div><!-- 2e -->
 
   <!-- 3e -->
-  <div class="bak1">
+  <div class="bak1" id="box3">
     <p id="text3">세번째 영역</p>
     <button type="button" onclick="togle1('text3')">polite</button>
   </div><!-- 3e -->
@@ -228,19 +228,19 @@ function togle1(tx_id) {
 <!-- 초기 aria 마크업 됨 s --> 
  <div lang="ko" class="container">
   <!-- 1s -->
-  <div class="bak2">
+  <div class="bak2" id="box11">
     <p id="text11" role="">첫번째 영역11</p>
     <button type="button"  onclick="togle2('text11')">role="alert"</button>
   </div><!-- 1e -->
 
   <!-- 2s -->
-  <div class="bak2">
+  <div class="bak2" id="box22">
     <p id="text22" aria-live="off">두번째 영역22</p>
     <button type="button"  onclick="togle2('text22')">assertive</button>
   </div><!-- 2e -->
 
   <!-- 3e -->
-  <div class="bak2">
+  <div class="bak2" id="box33">
     <p id="text33" aria-live="off">세번째 영역33</p>
     <button type="button" onclick="togle2('text33')">polite</button>
   </div><!-- 3e -->
