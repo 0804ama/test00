@@ -58,53 +58,53 @@
 <script type="text/javascript">
 /* 초기 aria 마크업 됨 togle1 s */
 function togle2(tx_id, attr, attrValue) {
-    var txP = document.getElementById(tx_id);
-    var text1 = document.getElementById('text1');
-    var text2 = document.getElementById('text2');
-    var text3 = document.getElementById('text3');
+    var txP1 = document.getElementById(tx_id);
+    var text11 = document.getElementById('text11');
+    var text22= document.getElementById('text22');
+    var text33= document.getElementById('text33');
 
     // 첫 번째 영역 처리
     if (tx_id === 'text1') {
-      if (txP.textContent === "첫번째 영역") {
-        txP.textContent = "(변경) 첫번째 영역";
-        txP.setAttribute(attr, attrValue);  // role="alert" 설정
-        text2.setAttribute('aria-hidden', 'true');
-        text3.setAttribute('aria-hidden', 'true');
+      if (txP1.textContent === "첫번째 영역11") {
+        txP1.textContent = "(변경) 첫번째 영역11";
+        txP1.setAttribute(attr, attrValue);  // role="alert" 설정
+        text22.setAttribute('aria-hidden', 'true');
+        text33.setAttribute('aria-hidden', 'true');
       } else {
-        txP.textContent = "첫번째 영역";
-        txP.removeAttribute(attr);
-        text2.setAttribute('aria-hidden', 'false');
-        text3.setAttribute('aria-hidden', 'false');
+        txP1.textContent = "첫번째 영역11";
+        txP1.removeAttribute(attr);
+        text22.setAttribute('aria-hidden', 'false');
+        text33.setAttribute('aria-hidden', 'false');
       }
     }
 
     // 두 번째 영역 처리
     else if (tx_id === 'text2') {
-      if (txP.textContent === "두번째 영역") {
-        txP.textContent = "(변경) 두번째 영역";
-        txP.setAttribute(attr, attrValue);  // aria-live="assertive" 설정
-        text1.setAttribute('aria-hidden', 'true');
-        text3.setAttribute('aria-hidden', 'true');
+      if (txP1.textContent === "두번째 영역22") {
+        txP1.textContent = "(변경) 두번째 영역22";
+        txP1.setAttribute(attr, attrValue);  // aria-live="assertive" 설정
+        text11.setAttribute('aria-hidden', 'true');
+        text33.setAttribute('aria-hidden', 'true');
       } else {
-        txP.textContent = "두번째 영역";
-        txP.removeAttribute(attr);
-        text1.setAttribute('aria-hidden', 'false');
-        text3.setAttribute('aria-hidden', 'false');
+        txP1.textContent = "두번째 영역22";
+        txP1.removeAttribute(attr);
+        text11.setAttribute('aria-hidden', 'false');
+        text33.setAttribute('aria-hidden', 'false');
       }
     }
 
     // 세 번째 영역 처리
     else if (tx_id === 'text3') {
-      if (txP.textContent === "세번째 영역") {
-        txP.textContent = "(변경) 세번째 영역";
-        txP.setAttribute(attr, attrValue);  // aria-live="polite" 설정
-        text1.setAttribute('aria-hidden', 'true');
-        text2.setAttribute('aria-hidden', 'true');
+      if (txP1.textContent === "세번째 영역33") {
+        txP1.textContent = "(변경) 세번째 영역33";
+        txP1.setAttribute(attr, attrValue);  // aria-live="polite" 설정
+        text11.setAttribute('aria-hidden', 'true');
+        text22.setAttribute('aria-hidden', 'true');
       } else {
-        txP.textContent = "세번째 영역";
-        txP.removeAttribute(attr);
-        text1.setAttribute('aria-hidden', 'false');
-        text2.setAttribute('aria-hidden', 'false');
+        txP1.textContent = "세번째 영역";
+        txP1.removeAttribute(attr);
+        text11.setAttribute('aria-hidden', 'false');
+        text22.setAttribute('aria-hidden', 'false');
       }
     }
   }
@@ -229,19 +229,19 @@ function togle1(tx_id) {
  <div lang="ko" class="container">
   <!-- 1s -->
   <div class="bak2">
-    <p id="text11" role="">첫번째 영역</p>
+    <p id="text11" role="">첫번째 영역11</p>
     <button type="button"  onclick="togle2('text11')">role="alert"</button>
   </div><!-- 1e -->
 
   <!-- 2s -->
   <div class="bak2">
-    <p id="text22" aria-live="off">두번째 영역</p>
+    <p id="text22" aria-live="off">두번째 영역22</p>
     <button type="button"  onclick="togle2('text22')">assertive</button>
   </div><!-- 2e -->
 
   <!-- 3e -->
   <div class="bak2">
-    <p id="text33" aria-live="off">세번째 영역</p>
+    <p id="text33" aria-live="off">세번째 영역33</p>
     <button type="button" onclick="togle2('text33')">polite</button>
   </div><!-- 3e -->
 </div>
