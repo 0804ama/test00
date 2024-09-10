@@ -56,58 +56,59 @@
     
     
 <script type="text/javascript">
- /* 초기 aria 마크업 됨 s */
- function togle2(tx_id, attr, attrValue) {
+/* 초기 aria 마크업 됨 s */
+function togle2(tx_id, attr, attrValue) {
     var txP = document.getElementById(tx_id);
-    var box1 = document.getElementById('box1');
-    var box2 = document.getElementById('box2');
-    var box3 = document.getElementById('box3');
+    var text1 = document.getElementById('text1');
+    var text2 = document.getElementById('text2');
+    var text3 = document.getElementById('text3');
 
-    // 첫 번째 영역의 처리
+    // 첫 번째 영역 처리
     if (tx_id === 'text1') {
       if (txP.textContent === "첫번째 영역") {
         txP.textContent = "(변경) 첫번째 영역";
-        txP.setAttribute(attr, attrValue);  // role="alert" 속성 추가
-        box2.setAttribute('aria-hidden', 'true');
-        box3.setAttribute('aria-hidden', 'true');
+        txP.setAttribute(attr, attrValue);  // role="alert" 설정
+        text2.setAttribute('aria-hidden', 'true');
+        text3.setAttribute('aria-hidden', 'true');
       } else {
         txP.textContent = "첫번째 영역";
         txP.removeAttribute(attr);
-        box2.setAttribute('aria-hidden', 'false');
-        box3.setAttribute('aria-hidden', 'false');
+        text2.setAttribute('aria-hidden', 'false');
+        text3.setAttribute('aria-hidden', 'false');
       }
     }
 
-    // 두 번째 영역의 처리
+    // 두 번째 영역 처리
     else if (tx_id === 'text2') {
       if (txP.textContent === "두번째 영역") {
         txP.textContent = "(변경) 두번째 영역";
-        txP.setAttribute(attr, attrValue);  // aria-live="assertive" 속성 추가
-        box1.setAttribute('aria-hidden', 'true');
-        box3.setAttribute('aria-hidden', 'true');
+        txP.setAttribute(attr, attrValue);  // aria-live="assertive" 설정
+        text1.setAttribute('aria-hidden', 'true');
+        text3.setAttribute('aria-hidden', 'true');
       } else {
         txP.textContent = "두번째 영역";
         txP.removeAttribute(attr);
-        box1.setAttribute('aria-hidden', 'false');
-        box3.setAttribute('aria-hidden', 'false');
+        text1.setAttribute('aria-hidden', 'false');
+        text3.setAttribute('aria-hidden', 'false');
       }
     }
 
-    // 세 번째 영역의 처리
+    // 세 번째 영역 처리
     else if (tx_id === 'text3') {
       if (txP.textContent === "세번째 영역") {
         txP.textContent = "(변경) 세번째 영역";
-        txP.setAttribute(attr, attrValue);  // aria-live="polite" 속성 추가
-        box1.setAttribute('aria-hidden', 'true');
-        box2.setAttribute('aria-hidden', 'true');
+        txP.setAttribute(attr, attrValue);  // aria-live="polite" 설정
+        text1.setAttribute('aria-hidden', 'true');
+        text2.setAttribute('aria-hidden', 'true');
       } else {
         txP.textContent = "세번째 영역";
         txP.removeAttribute(attr);
-        box1.setAttribute('aria-hidden', 'false');
-        box2.setAttribute('aria-hidden', 'false');
+        text1.setAttribute('aria-hidden', 'false');
+        text2.setAttribute('aria-hidden', 'false');
       }
     }
   }
+
 /* 초기 aria 마크업 됨 e */
  
 /* 초기 마크업 안됨 s */
