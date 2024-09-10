@@ -6,14 +6,43 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 <title>열고닫기</title>
 <style type="text/css">
-    .testRadio{
-    
-    }
-        
+/* ver 2 */
+.container {
+ display: flex;
+ gap: 10px; 
+}
+
+.bak1 {
+    width: 400px;
+    background-color: lightgray; 
+    border: 1px solid black;     
+    padding: 20px;              
+    border-radius: 5px;         
+    margin: 10px 0;
+    display: flex;              
+    justify-content: center;    
+    align-items: center;       
+    text-align: center;         
+    flex-direction: column;     
+}
+
+.bak1 button {
+  display:block;
+}
+
+
+#er1,#er2,#er3
+{
+      display: none;
+      padding: 20px;
+      background-color: #f0f0f0;
+      margin-top: 10px;
+}
+
+/* ver 2 e */
     
 </style>
-    
-    
+   
 <script type="text/javascript">
 function toggleDiv() {
   var myDiv = document.getElementById('myDiv');
@@ -48,13 +77,95 @@ function myFunction() {
   
 }
 
+/* ver2 s */
+function togle2(sut) 
+{
+  
+    var er = document.getElementById(sut);
+  
+    var er1Attr = "role";
+    var er1AttrValue = "alert";
+  
+    var er2ariaLiveAtt = "aria-live";
+    var er2ariaLiveAttrValue = "assertive";
+  
+    var er3ariaLiveAtt = "aria-live";
+    var er3ariaLiveAttrValue = "polite";
 
+  
+    //알림내용 열리고 닫히고
+    if (er.style.display === 'none'|| er.style.display === '') {
+      er.style.display = 'block';
+    } else {
+      er.style.display = 'none';
+    }
+  
+  
+  //속성추가
+   if (sut === 'er1') {
+    if (er.style.display === 'block') {
+      er.setAttribute(er1Attr, er1AttrValue); // 속성 추가
+    } else {
+      er.removeAttribute(er1Attr); // 속성 제거
+    }
+  } else if (sut === 'er2') {
+    if (er.style.display === 'block') {
+      er.setAttribute(er2ariaLiveAtt, er2ariaLiveAttrValue); // 속성 추가
+    } else {
+      er.removeAttribute(er2ariaLiveAtt); // 속성 제거
+    }
+  } else if (sut === 'er3') {
+    if (er.style.display === 'block') {
+      er.setAttribute(er3ariaLiveAtt, er3ariaLiveAttrValue); // 속성 추가
+    } else {
+      er.removeAttribute(er3ariaLiveAtt); // 속성 제거
+    }
+  }
+  
+}    
+/* ver2 e */
 
 </script>
 </head>
     
 <body>
+<!-- ver 2-->
+<div  class="container"><!--s -->
+  <!--1s-->
+  <div class="bak1">
+    <p> 첫번째 영역</p>
+    <button type="button" onclick="togle2('er1')">role="alert"</button>
 
+    <div id="er1">
+      <p>오류내용입니다</p>
+    </div>
+  </div><!--1e-->
+
+<!--2s-->
+  <div class="bak1">
+    <p> 두번째 영역</p>
+    <button type="button" onclick="togle2('er2')">assertive</button>
+    
+    <div id="er2">
+      <p>호호호</p>
+    </div>
+  </div><!--2e-->
+
+<!--3e-->
+  <div class="bak1">
+    <p> 세번째 영역</p>
+    <button type="button" onclick="togle2('er3')">polite</button>
+    <div id="er3">
+      <p>aria-live 속성의 polite 알림입니다</p>
+    </div>
+  </div><!--3e-->
+  
+</div> <!-- end -->
+<!-- ver 2 End -->
+
+
+
+    
 <button id="myButton" onclick="toggleDiv()">토글</button>
 <div id="myDiv" style="display: none;">안내안내
   <a href="">도움말</a>
