@@ -57,7 +57,7 @@
     
 <script type="text/javascript">
 /* 초기 aria 마크업 됨 togle2 s */
- function togle2(activeId, attr, attrValue, hideId1, hideId2) {
+function togle2(activeId, attr, attrValue, hideId1, hideId2) {
     var activeText = document.getElementById(activeId);
     var hideText1 = document.getElementById(hideId1);
     var hideText2 = document.getElementById(hideId2);
@@ -67,16 +67,16 @@
       // 원래 텍스트로 복원
       activeText.textContent = activeText.textContent.replace('(변경) ', '');
       activeText.removeAttribute(attr);
-      hideText1.setAttribute('aria-hidden', 'false');
-      hideText2.setAttribute('aria-hidden', 'false');
+      if (hideText1) hideText1.setAttribute('aria-hidden', 'false');
+      if (hideText2) hideText2.setAttribute('aria-hidden', 'false');
     } else {
       // 텍스트 변경 및 속성 추가
-      activeText.textContent = `(변경) ${activeText.textContent}`;
+      activeText.textContent = '(변경) ' + activeText.textContent;
       activeText.setAttribute(attr, attrValue);
-      hideText1.setAttribute('aria-hidden', 'true');
-      hideText2.setAttribute('aria-hidden', 'true');
+      if (hideText1) hideText1.setAttribute('aria-hidden', 'true');
+      if (hideText2) hideText2.setAttribute('aria-hidden', 'true');
     }
-  }
+}
 
 /* 초기 aria 마크업 됨 e */
  
