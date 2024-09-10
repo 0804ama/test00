@@ -56,6 +56,28 @@
     
     
 <script type="text/javascript">
+
+ /* role alert s */
+    document.getElementById('loginId1').addEventListener('input', function() {
+    var inputValue = this.value;
+    if (inputValue !== '12') {
+      showErrorMessage();
+    } else {
+      hideErrorMessage();
+    }
+  });
+
+  function showErrorMessage() {
+    document.getElementById('error-message').style.display = 'block';
+  }
+
+  function hideErrorMessage() {
+    document.getElementById('error-message').style.display = 'none';
+  }
+ /* role alert e */
+
+
+ 
 /* 초기 aria 마크업 됨 togle2 s */
 function togle2(activeId, attr, attrValue, hideId1, hideId2) {
     var activeText = document.getElementById(activeId);
@@ -221,13 +243,19 @@ function togle1(tx_id) {
 
  
 <!-- 초기 aria 마크업 됨 s --> 
- <div lang="ko" class="container">
-  <!-- 1s -->
-  <div class="bak2" id="box11" aria-hidden="false">
-    <p id="text11" role="">첫번째 영역11</p>
-    <button type="button" onclick="togle2('text11', 'role', 'alert', 'box22', 'box33')">alertㅎ</button>
-  </div><!-- 1e -->
 
+  <!-- 1s role-->
+ <div>
+  <label for="loginId1">계정정보 입력</label>
+  <input placeholder="아이디, 이메일, 전화번호" type="text" id="loginId1" name="loginId" autofocus="">
+   
+   <div id="error-message" role="alert" style="display:none;">
+    <p>카카오계정을 정확하게 입력해 주세요.</p>
+  </div>
+</div><!-- 1e -->
+
+ 
+ <div class="container">
   <!-- 2s -->
   <div class="bak2" id="box22" aria-hidden="false">
     <p id="text22" aria-live="off">두번째 영역22</p>
