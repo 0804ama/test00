@@ -107,6 +107,50 @@
 
 
    // aria 마크업 된 버전 
+    // role no alert
+    document.getElementById('loginId1').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        var inputValue = this.value;
+        var errorMessage = document.getElementById('error-message');
+        
+        if (inputValue !== '12') {
+          errorMessage.style.display = 'block'; 
+        } else {
+          errorMessage.style.display = 'none'; 
+        }
+        event.preventDefault();
+      }
+    });
+
+    // no assertive
+    document.getElementById('loginId2').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        var inputValue = this.value;
+        var errorMessage2 = document.getElementById('error-message2');
+        
+        if (inputValue !== '13') {
+          errorMessage2.style.display = 'block';
+        } else {
+          errorMessage2.style.display = 'none'; 
+        }
+        event.preventDefault();
+      }
+    });
+
+   // no polite
+    document.getElementById('loginId3').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        var inputValue = this.value;
+        var errorMessage2 = document.getElementById('error-message3');
+        
+        if (inputValue !== '14') {
+          errorMessage2.style.display = 'block';
+        } else {
+          errorMessage2.style.display = 'none'; 
+        }
+        event.preventDefault();
+      }
+    });
 
 
    
