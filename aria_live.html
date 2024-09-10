@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" id="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+<title>aria_live</title>
+<style type="text/css">
+.container {
+ display: flex;
+ gap: 10px; 
+}
 
+.bak1 {
+    width: 400px;
+    background-color: lightgray; 
+    border: 1px solid black;     
+    padding: 20px;              
+    border-radius: 5px;         
+    margin: 10px 0;
+    display: flex;              
+    justify-content: center;    
+    align-items: center;       
+    text-align: center;         
+    flex-direction: column;     
+}
+
+.bak1 button {
+  display:block;
+}        
+    
+</style>
+    
+    
+<script type="text/javascript">
+function togle2(tx_id) {
+    var txP = document.getElementById(tx_id);
+    
+    if (tx_id === 'text1') {
+      // 첫 번째 영역일 때
+      if (txP.textContent === "첫번째 내용입니다") {
+        txP.textContent = "(변경) 첫번째";
+        txP.setAttribute('role', 'alert');
+      } else {
+        txP.textContent = "첫번째 내용입니다";
+        txP.removeAttribute('role');
+      }
+    } else if (tx_id === 'text2') {
+      // 두 번째 영역일 때
+      if (txP.textContent === "두번째 내용입니다") {
+        txP.textContent = "(변경) 두번째";
+        txP.setAttribute('aria-live', 'assertive');
+      } else {
+        txP.textContent = "두번째 내용입니다";
+        txP.removeAttribute('aria-live');
+      }
+    } else if (tx_id === 'text3') {
+      // 세 번째 영역일 때
+      if (txP.textContent === "세번째 내용입니다") {
+        txP.textContent = "(변경) 세번째";
+        txP.setAttribute('aria-live', 'polite');
+      } else {
+        txP.textContent = "세번째 내용입니다";
+        txP.removeAttribute('aria-live');
+      }
+    }
+}
+    
+    
+</script>
+</head>
+    
+<body>
+<div lang="ko" class="container">
+  <!-- 1s -->
+  <div class="bak1">
+    <p id="text1">첫번째 영역</p>
+    <button type="button" onclick="togle2('text1')">role="alert"</button>
+  </div><!-- 1e -->
+
+  <!-- 2s -->
+  <div class="bak1">
+    <p id="text2">두번째 영역</p>
+    <button type="button" onclick="togle2('text2')">assertive</button>
+  </div><!-- 2e -->
+
+  <!-- 3e -->
+  <div class="bak1">
+    <p id="text3">세번째 영역</p>
+    <button type="button" onclick="togle2('text3')">polite</button>
+  </div><!-- 3e -->
+</div>
+    
+</body>
+</html>
