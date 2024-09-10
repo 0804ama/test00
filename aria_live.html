@@ -64,7 +64,7 @@ function togle2(tx_id, attr, attrValue) {
     var text33= document.getElementById('text33');
 
     // 첫 번째 영역 처리
-    if (tx_id === 'text1') {
+    if (tx_id === 'text11') {
       if (txP1.textContent === "첫번째 영역11") {
         txP1.textContent = "(변경) 첫번째 영역11";
         txP1.setAttribute(attr, attrValue);  // role="alert" 설정
@@ -79,7 +79,7 @@ function togle2(tx_id, attr, attrValue) {
     }
 
     // 두 번째 영역 처리
-    else if (tx_id === 'text2') {
+    else if (tx_id === 'text22') {
       if (txP1.textContent === "두번째 영역22") {
         txP1.textContent = "(변경) 두번째 영역22";
         txP1.setAttribute(attr, attrValue);  // aria-live="assertive" 설정
@@ -94,7 +94,7 @@ function togle2(tx_id, attr, attrValue) {
     }
 
     // 세 번째 영역 처리
-    else if (tx_id === 'text3') {
+    else if (tx_id === 'text33') {
       if (txP1.textContent === "세번째 영역33") {
         txP1.textContent = "(변경) 세번째 영역33";
         txP1.setAttribute(attr, attrValue);  // aria-live="polite" 설정
