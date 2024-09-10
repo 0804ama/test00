@@ -33,6 +33,61 @@
     
     
 <script type="text/javascript">
+ /* 초기 aria 마크업 됨 s */
+ function togle2(tx_id, attr, attrValue) {
+    var txP = document.getElementById(tx_id);
+    var box1 = document.getElementById('box1');
+    var box2 = document.getElementById('box2');
+    var box3 = document.getElementById('box3');
+
+    // 첫 번째 영역의 처리
+    if (tx_id === 'text1') {
+      if (txP.textContent === "첫번째 영역") {
+        txP.textContent = "(변경) 첫번째 영역";
+        txP.setAttribute(attr, attrValue);  // role="alert" 속성 추가
+        box2.setAttribute('aria-hidden', 'true');
+        box3.setAttribute('aria-hidden', 'true');
+      } else {
+        txP.textContent = "첫번째 영역";
+        txP.removeAttribute(attr);
+        box2.setAttribute('aria-hidden', 'false');
+        box3.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    // 두 번째 영역의 처리
+    else if (tx_id === 'text2') {
+      if (txP.textContent === "두번째 영역") {
+        txP.textContent = "(변경) 두번째 영역";
+        txP.setAttribute(attr, attrValue);  // aria-live="assertive" 속성 추가
+        box1.setAttribute('aria-hidden', 'true');
+        box3.setAttribute('aria-hidden', 'true');
+      } else {
+        txP.textContent = "두번째 영역";
+        txP.removeAttribute(attr);
+        box1.setAttribute('aria-hidden', 'false');
+        box3.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    // 세 번째 영역의 처리
+    else if (tx_id === 'text3') {
+      if (txP.textContent === "세번째 영역") {
+        txP.textContent = "(변경) 세번째 영역";
+        txP.setAttribute(attr, attrValue);  // aria-live="polite" 속성 추가
+        box1.setAttribute('aria-hidden', 'true');
+        box2.setAttribute('aria-hidden', 'true');
+      } else {
+        txP.textContent = "세번째 영역";
+        txP.removeAttribute(attr);
+        box1.setAttribute('aria-hidden', 'false');
+        box2.setAttribute('aria-hidden', 'false');
+      }
+    }
+  }
+/* 초기 aria 마크업 됨 e */
+ 
+/* 초기 마크업 안됨 s 
 function togle2(tx_id) {
     var txP = document.getElementById(tx_id);
     var box1 = document.getElementById('box1');
@@ -81,8 +136,9 @@ function togle2(tx_id) {
       }
     }
   }
+  초기 마크업 안됨 e */
   
-    /*
+ /*
  function togle2(tx_id) {
     var txP = document.getElementById(tx_id);
     if (tx_id === 'text1') {
@@ -121,18 +177,7 @@ function togle2(tx_id) {
     
 <body>
 
-<button onclick="document.getElementById('content2').textContent = '둘 변경됐어요!'">
-  나를 클릭하면 아래 내용이 변경된다</button>
-  <div id="content2" aria-live="polite">
-    나는 아직 변경되지 않았어요
-  </div>
-
-<button onclick="document.getElementById('content3').textContent = '셋 변경됐어요!'">
-  나를 클릭하면 아래 내용이 변경된다</button>
-  <div id="content3" aria-live="assertive">
-    나는 아직 변경되지 않았어요
-  </div>
- 
+<!-- 초기 마크업 안됨 s --> 
 <div lang="ko" class="container">
   <!-- 1s -->
   <div class="bak1">
@@ -152,6 +197,31 @@ function togle2(tx_id) {
     <button type="button" onclick="togle2('text3')">polite</button>
   </div><!-- 3e -->
 </div>
-    
+<!-- 초기 마크업 안됨 e -->
+
+
+ 
+<!-- 초기 aria 마크업 됨 s --> 
+ <div lang="ko" class="container">
+  <!-- 1s -->
+  <div class="bak1">
+    <p id="text1">첫번째 영역</p>
+    <button type="button" role="" onclick="togle2('text1')">role="alert"</button>
+  </div><!-- 1e -->
+
+  <!-- 2s -->
+  <div class="bak1">
+    <p id="text2">두번째 영역</p>
+    <button type="button" aria-live="off" onclick="togle2('text2')">assertive</button>
+  </div><!-- 2e -->
+
+  <!-- 3e -->
+  <div class="bak1">
+    <p id="text3">세번째 영역</p>
+    <button type="button" aria-live="off" onclick="togle2('text3')">polite</button>
+  </div><!-- 3e -->
+</div>
+<!-- 초기 aria 마크업 됨 e --> 
+ 
 </body>
 </html>
