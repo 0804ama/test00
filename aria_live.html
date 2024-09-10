@@ -156,17 +156,29 @@
    
   });
  
-  function togle2(mode) {
+ function togle2(mode) {
     if (mode === 'assertive') {
-      // Change aria-live and text for the first element
+      // Get the first element
       var text22 = document.getElementById('text22');
-      text22.setAttribute('aria-live', 'assertive');
-      text22.textContent = '(변경) 첫번째';
+      // Toggle between the original and updated text
+      if (text22.textContent === '첫번째 영역') {
+        text22.setAttribute('aria-live', 'assertive');
+        text22.textContent = '(변경) 첫번째';
+      } else {
+        text22.setAttribute('aria-live', 'off');
+        text22.textContent = '첫번째 영역';
+      }
     } else if (mode === 'polite') {
-      // Change aria-live and text for the second element
+      // Get the second element
       var text33 = document.getElementById('text33');
-      text33.setAttribute('aria-live', 'polite');
-      text33.textContent = '(변경) 두번째';
+      // Toggle between the original and updated text
+      if (text33.textContent === '두번째 영역') {
+        text33.setAttribute('aria-live', 'polite');
+        text33.textContent = '(변경) 두번째';
+      } else {
+        text33.setAttribute('aria-live', 'off');
+        text33.textContent = '두번째 영역';
+      }
     }
   }
     
