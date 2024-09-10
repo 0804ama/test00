@@ -34,7 +34,7 @@
     
 <script type="text/javascript">
 function togle2(tx_id) {
-    var txP = document.getElementById(tx_id); /* *//
+    var txP = document.getElementById(tx_id);
     var box1 = document.getElementById('box1');
     var box2 = document.getElementById('box2');
     var box3 = document.getElementById('box3');
@@ -80,8 +80,11 @@ function togle2(tx_id) {
         box2.setAttribute('aria-hidden', 'false');
       }
     }
+  }
   
     /*
+ function togle2(tx_id) {
+    var txP = document.getElementById(tx_id);
     if (tx_id === 'text1') {
       // 첫 번째 영역일 때
       if (txP.textContent === "첫번째 내용입니다") {
@@ -109,8 +112,8 @@ function togle2(tx_id) {
         txP.textContent = "세번째 내용입니다";
         txP.removeAttribute('aria-live');
       }
-    }*/
-}
+    }
+}*/
     
     
 </script>
