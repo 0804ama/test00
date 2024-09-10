@@ -155,7 +155,20 @@
 
    
   });
-  
+ 
+  function togle2(mode) {
+    if (mode === 'assertive') {
+      // Change aria-live and text for the first element
+      var text22 = document.getElementById('text22');
+      text22.setAttribute('aria-live', 'assertive');
+      text22.textContent = '(변경) 첫번째';
+    } else if (mode === 'polite') {
+      // Change aria-live and text for the second element
+      var text33 = document.getElementById('text33');
+      text33.setAttribute('aria-live', 'polite');
+      text33.textContent = '(변경) 두번째';
+    }
+  }
     
 </script>
 </head>
@@ -232,17 +245,17 @@
 
  
  <div class="container">
-  <!-- 2s -->
+  <!-- 1s -->
   <div class="bak2" id="box22" aria-hidden="false">
-    <p id="text22" aria-live="off">두번째 영역22</p>
-    <button type="button"  onclick="togle2('text22', 'aria-live', 'assertive', 'box11', 'box33')">assertiveㅎ</button>
-  </div><!-- 2e -->
+    <p id="text22" aria-live="off">첫번째 영역</p>
+    <button type="button"  onclick="togle2()">assertiveㅎ</button>
+  </div><!-- 1e -->
 
-  <!-- 3s -->
+  <!-- 2s -->
   <div class="bak2" id="box33" aria-hidden="false">
-    <p id="text33" aria-live="off">세번째 영역33</p>
-    <button type="button" onclick="togle2('text33', 'aria-live', 'polite', 'box11', 'box22')">politeㅎ</button>
-  </div><!-- 3e -->
+    <p id="text33" aria-live="off">두번째 영역</p>
+    <button type="button" onclick="togle2()">politeㅎ</button>
+  </div><!-- 2e -->
 </div>
 <!-- 초기 aria 마크업 됨 e --> 
  
