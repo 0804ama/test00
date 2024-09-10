@@ -73,167 +73,50 @@
   });
  /* role alert e */
 
-
- 
-/* 초기 aria 마크업 됨 togle2 s */
-function togle2(activeId, attr, attrValue, hideId1, hideId2) {
-    var activeText = document.getElementById(activeId);
-    var hideText1 = document.getElementById(hideId1);
-    var hideText2 = document.getElementById(hideId2);
-
-    // 첫 번째, 두 번째, 세 번째 텍스트 변경 및 속성 설정
-    if (activeId === 'text11') {
-      if (activeText.getAttribute('role') === 'alert') {
-        activeText.textContent = '첫번째 영역';
-        activeText.setAttribute('role', '');
-        hideText1.setAttribute('aria-hidden', 'false');
-        hideText2.setAttribute('aria-hidden', 'false');
+// 초기 설정 안됨 s
+  document.getElementById('loginId2').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      var inputValue = this.value;
+      var errorMessage = document.getElementById('error-message2');
+      
+      if (inputValue !== '13') {
+        errorMessage.style.display = 'block';
+        errorMessage.setAttribute('aria-live', 'assertive'); 
       } else {
-        activeText.textContent = '(변경) 첫번째 영역';
-        activeText.setAttribute('role', 'alert');
-        activeText.setAttribute('aria-hidden', 'false');
-        hideText1.setAttribute('aria-hidden', 'true');
-        hideText2.setAttribute('aria-hidden', 'true');
+        errorMessage.style.display = 'none'; 
+        errorMessage.removeAttribute('aria-live'); 
       }
-    } else if (activeId === 'text22') {
-      if (activeText.getAttribute('aria-live') === 'assertive') {
-        activeText.textContent = '두번째 영역';
-        activeText.setAttribute('aria-live', 'off');
-        hideText1.setAttribute('aria-hidden', 'false');
-        hideText2.setAttribute('aria-hidden', 'false');
-      } else {
-        activeText.textContent = '(변경) 두번째 영역';
-        activeText.setAttribute('aria-live', 'assertive');
-        hideText1.setAttribute('aria-hidden', 'true');
-        hideText2.setAttribute('aria-hidden', 'true');
-      }
-    } else if (activeId === 'text33') {
-      if (activeText.getAttribute('aria-live') === 'polite') {
-        activeText.textContent = '세번째 영역';
-        activeText.setAttribute('aria-live', 'off');
-        hideText1.setAttribute('aria-hidden', 'false');
-        hideText2.setAttribute('aria-hidden', 'false');
-      } else {
-        activeText.textContent = '(변경) 세번째 영역';
-        activeText.setAttribute('aria-live', 'polite');
-        activeText.setAttribute('aria-hidden','false');
-        hideText1.setAttribute('aria-hidden', 'true');
-        hideText2.setAttribute('aria-hidden', 'true');
-      }
+      
+      event.preventDefault(); 
     }
-  }
+  });
+ // 초기 설정 안됨 e
 
-/* 초기 aria 마크업 됨 e */
- 
-/* 초기 마크업 안됨 s */
-function togle1(tx_id) {
-    var txP = document.getElementById(tx_id);
-    var box1 = document.getElementById('box1');
-    var box2 = document.getElementById('box2');
-    var box3 = document.getElementById('box3');
-
-    if (tx_id === 'text1') {
-      // 첫 번째 영역일 때
-      if (txP.textContent === "첫번째 영역") {
-        txP.textContent = "(변경) 첫번째";
-        txP.setAttribute('role', 'alert');
-        box2.setAttribute('aria-hidden', 'true');
-        box3.setAttribute('aria-hidden', 'true');
-      } else {
-        txP.textContent = "첫번째 영역";
-        txP.removeAttribute('role');
-        box2.setAttribute('aria-hidden', 'false');
-        box3.setAttribute('aria-hidden', 'false');
-      }
-    } else if (tx_id === 'text2') {
-      // 두 번째 영역일 때
-      if (txP.textContent === "두번째 영역") {
-        txP.textContent = "(변경) 두번째";
-        txP.setAttribute('aria-live', 'assertive');
-        box2.removeAttribute('aria-hidden');
-        box3.setAttribute('aria-hidden', 'true');
-      } else {
-        txP.textContent = "두번째 영역";
-        txP.removeAttribute('aria-live');
-        box1.setAttribute('aria-hidden', 'false');
-        box3.setAttribute('aria-hidden', 'false');
-      }
-    } else if (tx_id === 'text3') {
-      // 세 번째 영역일 때
-      if (txP.textContent === "세번째 영역") {
-        txP.textContent = "(변경) 세번째";
-        txP.setAttribute('aria-live', 'polite');
-        box1.setAttribute('aria-hidden', 'true');
-        box2.setAttribute('aria-hidden', 'true');
-        box3.removeAttribute('aria-hidden');
-      } else {
-        txP.textContent = "세번째 영역";
-        txP.removeAttribute('aria-live');
-        box1.setAttribute('aria-hidden', 'false');
-        box2.setAttribute('aria-hidden', 'false');
-      }
-    }
-  }
- /* 초기 마크업 안됨 e */
-  
- /*
- function togle2(tx_id) {
-    var txP = document.getElementById(tx_id);
-    if (tx_id === 'text1') {
-      // 첫 번째 영역일 때
-      if (txP.textContent === "첫번째 내용입니다") {
-        txP.textContent = "(변경) 첫번째";
-        txP.setAttribute('role', 'alert');
-      } else {
-        txP.textContent = "첫번째 내용입니다";
-        txP.removeAttribute('role');
-      }
-    } else if (tx_id === 'text2') {
-      // 두 번째 영역일 때
-      if (txP.textContent === "두번째 내용입니다") {
-        txP.textContent = "(변경) 두번째";
-        txP.setAttribute('aria-live', 'assertive');
-      } else {
-        txP.textContent = "두번째 내용입니다";
-        txP.removeAttribute('aria-live');
-      }
-    } else if (tx_id === 'text3') {
-      // 세 번째 영역일 때
-      if (txP.textContent === "세번째 내용입니다") {
-        txP.textContent = "(변경) 세번째";
-        txP.setAttribute('aria-live', 'polite');
-      } else {
-        txP.textContent = "세번째 내용입니다";
-        txP.removeAttribute('aria-live');
-      }
-    }
-}*/
     
     
 </script>
 </head>
     
 <body>
-
+  <!-- 1s role-->
+ <div>
+  <label for="loginId1">계정정보 입력</label>
+  <input placeholder="아이디, 이메일, 전화번호" type="text" id="loginId1" name="loginId">
+  
+  <div id="error-message" role="alert" style="display:none;">
+    <p>1번. 카카오계정을 정확하게 입력해 주세요.</p>
+  </div>
+</div><!-- 1e -->
+ 
 <!-- 초기 마크업 안됨 s --> 
-<div lang="ko" class="container">
-  <!-- 1s -->
-  <div class="bak1" id="box1">
-    <p id="text1">첫번째 영역</p>
-    <button type="button" onclick="togle1('text1')">role="alert"</button>
-  </div><!-- 1e -->
-
-  <!-- 2s -->
-  <div class="bak1" id="box2">
-    <p id="text2">두번째 영역</p>
-    <button type="button" onclick="togle1('text2')">assertive</button>
-  </div><!-- 2e -->
-
-  <!-- 3e -->
-  <div class="bak1" id="box3">
-    <p id="text3">세번째 영역</p>
-    <button type="button" onclick="togle1('text3')">polite</button>
-  </div><!-- 3e -->
+<div>
+  <label for="loginId2">계정정보 입력</label>
+  <input placeholder="아이디, 이메일, 전화번호" type="text" id="loginId2" name="loginId2">
+  
+  
+  <div id="error-message2" style="display:none;">
+    <p>2번. 카카오계정을 정확하게 입력해 주세요.</p>
+  </div>
 </div>
 <!-- 초기 마크업 안됨 e -->
 
@@ -241,17 +124,7 @@ function togle1(tx_id) {
  
 <!-- 초기 aria 마크업 됨 s --> 
 
-  <!-- 1s role-->
- <div>
-  <label for="loginId1">계정정보 입력</label>
-  <input placeholder="아이디, 이메일, 전화번호" type="text" id="loginId1" name="loginId" class="tf_g" autofocus="">
-  
-  
-  <!-- Error message div, initially hidden -->
-  <div id="error-message" role="alert" style="display:none;">
-    <p class="desc_error">카카오계정을 정확하게 입력해 주세요.</p>
-  </div>
-</div><!-- 1e -->
+
 
  
  <div class="container">
