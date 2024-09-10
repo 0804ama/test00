@@ -72,6 +72,7 @@ function togle2(activeId, attr, attrValue, hideId1, hideId2) {
       } else {
         activeText.textContent = '(변경) 첫번째 영역';
         activeText.setAttribute('role', 'alert');
+        activeText.setAttribute('aria-hidden', 'false');
         hideText1.setAttribute('aria-hidden', 'true');
         hideText2.setAttribute('aria-hidden', 'true');
       }
