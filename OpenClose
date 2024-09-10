@@ -1,0 +1,33 @@
+<html lang="ko">
+<div  class="container"><!--s -->
+  <!--1s-->
+  <div class="bak1">
+    <p> 첫번째 영역</p>
+    <button type="button" onclick="togle2('er1')">role="alert"</button>
+
+    <div id="er1">
+      <p>오류내용입니다</p>
+    </div>
+  </div><!--1e-->
+
+<!--2s-->
+  <div class="bak1">
+    <p> 두번째 영역</p>
+    <button type="button" onclick="togle2('er2')">assertive</button>
+    
+    <div id="er2">
+      <p>호호호</p>
+    </div>
+  </div><!--2e-->
+
+<!--3e-->
+  <div class="bak1">
+    <p> 세번째 영역</p>
+    <button type="button" onclick="togle2('er3')">polite</button>
+    <div id="er3">
+      <p>aria-live 속성의 polite 알림입니다</p>
+    </div>
+  </div><!--3e-->
+  
+</div> <!-- end -->
+</html>
