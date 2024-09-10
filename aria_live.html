@@ -56,7 +56,7 @@
     
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
-    // role alert
+    // role no alert
     document.getElementById('loginId1').addEventListener('keydown', function(event) {
       if (event.key === 'Enter') {
         var inputValue = this.value;
@@ -71,7 +71,7 @@
       }
     });
 
-    // role assertive
+    // no assertive
     document.getElementById('loginId2').addEventListener('keydown', function(event) {
       if (event.key === 'Enter') {
         var inputValue = this.value;
@@ -87,6 +87,29 @@
         event.preventDefault();
       }
     });
+
+   // no polite
+    document.getElementById('loginId3').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        var inputValue = this.value;
+        var errorMessage2 = document.getElementById('error-message3');
+        
+        if (inputValue !== '14') {
+          errorMessage2.style.display = 'block';
+          errorMessage2.setAttribute('aria-live', 'polite');
+        } else {
+          errorMessage2.style.display = 'none'; 
+          errorMessage2.removeAttribute('aria-live');
+        }
+        event.preventDefault();
+      }
+    });
+
+
+   // aria 마크업 된 버전 
+
+
+   
   });
   
     
@@ -94,7 +117,7 @@
 </head>
     
 <body>
- <!-- 1s role-->
+ <!-- 1s no role-->
 <div>
   <label for="loginId1">계정정보 입력_alert</label>
   <input placeholder="아이디, 이메일, 전화번호" type="text" id="loginId1" name="loginId">
@@ -105,7 +128,7 @@
 </div>
 <!-- 1e -->
  
-<!-- 2s assertive --> 
+<!-- 2s no assertive --> 
 <div>
   <label for="loginId2">계정정보 입력_assertive</label>
   <input placeholder="아이디, 이메일, 전화번호" type="text" id="loginId2" name="loginId2">
@@ -116,10 +139,51 @@
 </div>
 <!-- 2e -->
 
+ <!-- 3s no polite --> 
+<div>
+  <label for="loginId3">계정정보 입력_polite</label>
+  <input placeholder="아이디, 이메일, 전화번호" type="text" id="loginId3" name="loginId3">
+
+  <div id="error-message3" style="display:none;">
+    <p>3번. 카카오계정을 정확하게 입력해 주세요.</p>
+  </div>
+</div>
+<!-- 3e -->
+
 
  
 <!-- 초기 aria 마크업 됨 s --> 
+<div>
+  <label for="loginId11">계정정보 입력_alert1</label>
+  <input placeholder="아이디, 이메일, 전화번호" type="text" id="loginId11" name="loginId11">
 
+  <div id="error-message11" role="alert" style="display:none;">
+    <p>1번. 카카오계정을 정확하게 입력해 주세요.</p>
+  </div>
+</div>
+<!-- 1e -->
+ 
+<!-- 2s assertive --> 
+<div>
+  <label for="loginId22">계정정보 입력_assertive2</label>
+  <input placeholder="아이디, 이메일, 전화번호" type="text" id="loginId22" name="loginId22">
+
+  <div id="error-message22" aria-live="assertive" style="display:none;">
+    <p>2번. 카카오계정을 정확하게 입력해 주세요.</p>
+  </div>
+</div>
+<!-- 2e -->
+
+ <!-- 3s polite --> 
+<div>
+  <label for="loginId33">계정정보 입력_polite3</label>
+  <input placeholder="아이디, 이메일, 전화번호" type="text" id="loginId33" name="loginId33">
+
+  <div id="error-message33" aria-live="polite" style="display:none;">
+    <p>3번. 카카오계정을 정확하게 입력해 주세요.</p>
+  </div>
+</div>
+<!-- 3e -->
 
 
  
