@@ -32,7 +32,7 @@
 } 
  /* 초기 마크업 안됨 e */
 
-/* 초기 aria 마크업 됨 s */
+/* 초기 aria 마크업 됨 togle2 s */
  .bak2 {
     width: 400px;
     background-color: yellow; 
@@ -56,7 +56,7 @@
     
     
 <script type="text/javascript">
-/* 초기 aria 마크업 됨 s */
+/* 초기 aria 마크업 됨 togle1 s */
 function togle2(tx_id, attr, attrValue) {
     var txP = document.getElementById(tx_id);
     var text1 = document.getElementById('text1');
@@ -229,20 +229,20 @@ function togle1(tx_id) {
  <div lang="ko" class="container">
   <!-- 1s -->
   <div class="bak2">
-    <p id="text1" role="">첫번째 영역</p>
-    <button type="button"  onclick="togle2('text1')">role="alert"</button>
+    <p id="text11" role="">첫번째 영역</p>
+    <button type="button"  onclick="togle2('text11')">role="alert"</button>
   </div><!-- 1e -->
 
   <!-- 2s -->
   <div class="bak2">
-    <p id="text2" aria-live="off">두번째 영역</p>
-    <button type="button"  onclick="togle2('text2')">assertive</button>
+    <p id="text22" aria-live="off">두번째 영역</p>
+    <button type="button"  onclick="togle2('text22')">assertive</button>
   </div><!-- 2e -->
 
   <!-- 3e -->
   <div class="bak2">
-    <p id="text3" aria-live="off">세번째 영역</p>
-    <button type="button" onclick="togle2('text3')">polite</button>
+    <p id="text33" aria-live="off">세번째 영역</p>
+    <button type="button" onclick="togle2('text33')">polite</button>
   </div><!-- 3e -->
 </div>
 <!-- 초기 aria 마크업 됨 e --> 
