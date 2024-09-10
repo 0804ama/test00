@@ -58,22 +58,14 @@
 <script type="text/javascript">
 
  /* role alert s */
-    document.getElementById('loginId1').addEventListener('input', function() {
+   document.getElementById('loginId1').addEventListener('input', function() {
     var inputValue = this.value;
     if (inputValue !== '12') {
-      showErrorMessage();
+      document.getElementById('error-message').style.display = 'block'; // Show error message
     } else {
-      hideErrorMessage();
+      document.getElementById('error-message').style.display = 'none'; // Hide error message
     }
   });
-
-  function showErrorMessage() {
-    document.getElementById('error-message').style.display = 'block';
-  }
-
-  function hideErrorMessage() {
-    document.getElementById('error-message').style.display = 'none';
-  }
  /* role alert e */
 
 
