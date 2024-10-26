@@ -176,6 +176,50 @@ function togle1() {
 	</svg>
 </button>
 
+<ul class="s-list">
+    <li>
+        <div>
+            <a href="..." aria-label="상품명, 네파 블랙야크 브랜드 쿨토시 멀티스카프 쿨스카프 코오롱, 가격정보, 3,200원~, 판매자 평점, 총 5점 중 4.0점, 리뷰 1,165">
+                <div>
+                    <span><img alt="" src="..."></span> <!-- alt속성 빈값 -->
+                </div>
+                <div aria-hidden="true"> <!-- aria-hidden="true" 속성 추가 -->
+                    <dl>
+                        <div>
+                            <dt>상품명</dt>
+                            <dd id="product01">네파 블랙야크 브랜드 쿨토시 멀티스카프 쿨스카프 코오롱</dd> <!-- id 제공 -->
+                        </div>
+                        <div>
+                            <dt>가격정보</dt>
+                            <dd>
+                                <span class="sr-only">할인 모음가</span>
+                                <strong>3,200</strong>원~
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>판매자평점 및 리뷰</dt>
+                            <dd>
+                                <span class="sr-only">판매자 평점</span>
+                                <span></span>만족도: 90%
+                            </dd>
+                            <dd>
+                                <span class="sr-only">리뷰</span>
+                                1,165
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </a>
+            <div class="c-card-item__buttons">
+                <button type="button" aria-pressed="false" aria-describedby="product01"> <!-- aria-describedby 속성 제공 -->
+                    <span></span>
+                    <span class="sr-only">찜</span>
+                </button>
+            </div>
+        </div>
+    </li>
+    ...(생략)...
+</ul>
 
 <div><span><img src="" alt="ddddd" loading="lazy"></span></div>
 	
