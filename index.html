@@ -10,7 +10,16 @@
     video::-webkit-media-controls {
         display:none !important;
     }
-    
+	
+    .ir_caption {
+    	overflow: hidden;
+    	position: absolute;
+    	width: 0;
+    	height: 0;
+    	line-height: 0;
+    	text-indent: -9999px;
+	font-size:1px;
+    }
 
     .hide {
         position: absolute;
@@ -186,6 +195,47 @@ function togle1() {
    </ul>
    ...(중략)...
 </div>
+
+<table class="tbl_comm">
+<caption class="ir_caption">연도별 권리침해 신고 현황</caption>
+<colgroup>
+<thead>
+<tr>
+    <th rowspan="2" colspan="3" scope="col"> <strong class="screen_out">이용자 요청</strong> </th>
+    <th scope="col" colspan="2">2022년</th>
+    <th scope="col" colspan="2">2023년</th>
+    <th scope="col" class="lst">2024년</th>
+</tr>
+<tr>
+    <th scope="col">상반기</th>
+    <th scope="col">하반기</th>
+    <th scope="col">상반기</th>
+    <th scope="col">하반기</th>
+    <th scope="col" class="lst">상반기</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <th scope="row" rowspan="12"> <strong>Kakao</strong> </th>
+    <th scope="row" rowspan="2">저작권침해</th>
+    <th scope="row">신고건수</th>
+    <td>18,666</td>
+    <td>7,192</td>
+    <td>5,411</td>
+    <td>9,419</td>
+    <td class="lst">6,608</td>
+</tr>
+<tr>
+    <th scope="row">처리건수</th>
+    <td>17,613</td>
+    <td>6,246</td>
+    <td>3,583</td>
+    <td>7,762</td>
+    <td class="lst">5,757</td>
+</tr>
+
+</tbody>
+</table>
 <ul class="s-list">
     <li>
         <div>
