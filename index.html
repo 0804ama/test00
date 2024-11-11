@@ -185,7 +185,7 @@ function togle1() {
 	</svg>
 </button>
 
-<ul role="list">
+<ul>
 	<li><a href="/" role="button">메뉴1</li>
 	<li>
 		<a href="javascript;" role="button" rel="nosublink" aria-expanded="true" data-v-4506c998="" class="">
@@ -197,7 +197,13 @@ function togle1() {
 				</g>
 			</svg>
 		</a>
-		<a href="/" role="button" style="display:block; position: relative;" aria-expanded="true">메뉴2</li>
+		<ul>
+			<li><a href="/" aria-expanded="true">두번째 메뉴</a></li>
+			<li><a href="/" aria-expanded="false">두번째 메뉴2</a></li>
+			<li><a href="/" aria-expanded="false">두번째 메뉴3</a></li>
+		</ul>
+	</li>
+	<li><a href="/" role="button" style="display:block; position: relative;" aria-expanded="true">메뉴2</li>
 	<li><a href="/" role="button" aria-expanded="false">메뉴3</li>
 </ul>
 <button type="button" aria-haspopup="menu" aria-current="true" aria-controls="mainMenu-3" aria-expanded="false" class="item_menu" data-v-7a2444b2="">
