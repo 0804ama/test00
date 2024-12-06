@@ -15,7 +15,7 @@
     <script type="module">import.meta.url;import("_").catch(()=>1);async function* g(){};window.__vite_is_modern_browser=true;</script>
     <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
   <link rel="modulepreload" as="script" crossorigin="" href="https://t1.kakaocdn.net/okay/public/web/latest/openlink/openlink-assets/Lottie-41c8e0a1.js">
-    <style type="text/css">
+<style type="text/css">
     .custom-checkbox {
   display: inline-block;
   position: relative;
@@ -57,34 +57,34 @@
 
     </style>
 
-    <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-  const checkbox = document.getElementById('myCheckbox');
-  const label = document.querySelector('.custom-checkbox');
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+const checkbox = document.getElementById('myCheckbox');
+const label = document.querySelector('.custom-checkbox');
 
-  label.addEventListener('keydown', function(event) {
-    if (event.code === 'Space') {
-      event.preventDefault();
-      checkbox.checked = !checkbox.checked;
-      updateCheckboxState();
-    }
-  });
-
-  checkbox.addEventListener('change', updateCheckboxState);
-
-  function updateCheckboxState() {
-    const checkmark = label.querySelector('.checkmark');
-    if (checkbox.checked) {
-      checkmark.style.backgroundImage = "url('https://shop.kt.com/NWL/assets/images/pc/nwCheckbox_on.svg')";
-    } else {
-      checkmark.style.backgroundImage = "url('https://shop.kt.com/NWL/assets/images/pc/nwCheckbox_off.svg')";
-    }
-  }
-
-  // 초기 상태 설정
+label.addEventListener('keydown', function(event) {
+if (event.code === 'Space') {
+  event.preventDefault();
+  checkbox.checked = !checkbox.checked;
   updateCheckboxState();
+}
 });
-    </script>
+
+checkbox.addEventListener('change', updateCheckboxState);
+
+function updateCheckboxState() {
+const checkmark = label.querySelector('.checkmark');
+if (checkbox.checked) {
+  checkmark.style.backgroundImage = "url('https://shop.kt.com/NWL/assets/images/pc/nwCheckbox_on.svg')";
+} else {
+  checkmark.style.backgroundImage = "url('https://shop.kt.com/NWL/assets/images/pc/nwCheckbox_off.svg')";
+}
+}
+
+// 초기 상태 설정
+updateCheckboxState();
+});
+</script>
 </head>
 <body>
 
