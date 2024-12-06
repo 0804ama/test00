@@ -15,30 +15,86 @@
     <script type="module">import.meta.url;import("_").catch(()=>1);async function* g(){};window.__vite_is_modern_browser=true;</script>
     <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
   <link rel="modulepreload" as="script" crossorigin="" href="https://t1.kakaocdn.net/okay/public/web/latest/openlink/openlink-assets/Lottie-41c8e0a1.js">
+    <style type="text/css">
+    .custom-checkbox {
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox input {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-image: url('https://shop.kt.com/NWL/assets/images/pc/nwCheckbox_off.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-image: url('https://shop.kt.com/NWL/assets/images/pc/nwCheckbox_on.svg');
+}
+
+.custom-checkbox input:focus ~ .checkmark {
+  outline: 2px solid #0198e1;
+}
+
+    </style>
+
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+  const checkbox = document.getElementById('myCheckbox');
+  const label = document.querySelector('.custom-checkbox');
+
+  label.addEventListener('keydown', function(event) {
+    if (event.code === 'Space') {
+      event.preventDefault();
+      checkbox.checked = !checkbox.checked;
+      updateCheckboxState();
+    }
+  });
+
+  checkbox.addEventListener('change', updateCheckboxState);
+
+  function updateCheckboxState() {
+    const checkmark = label.querySelector('.checkmark');
+    if (checkbox.checked) {
+      checkmark.style.backgroundImage = "url('https://shop.kt.com/NWL/assets/images/pc/nwCheckbox_on.svg')";
+    } else {
+      checkmark.style.backgroundImage = "url('https://shop.kt.com/NWL/assets/images/pc/nwCheckbox_off.svg')";
+    }
+  }
+
+  // 초기 상태 설정
+  updateCheckboxState();
+});
+    </script>
 </head>
 <body>
 
-    <div>
-        <p><a href="https://naver.com">네이버 가자</a></p>
-    </div>
-    <table>
-        <caption>이든이 짠 표</caption>
-        <tr>
-            <th id="testh01">전일자(원)</th>
-            <td headers="testh01">38,000</td>
-            <th id="testh02">매도호가(원)</th>
-            <td headers="testh02">0</td>
-        </tr>
-        <tr>
-            <th colspan="2" scope="row">외국인비율(%)</th>
-            <td colspan="2">0.3564</td>
-        </tr>
-        <tr>
-            <th colspan="2" scope="row">액면가(원)</th>
-            <td colspan="2">100</td>
-        </tr>
+ <input type="checkbox" id="myCheckbox">
+<label for="myCheckbox" class="custom-checkbox">
+  <span class="checkmark"></span>
+  체크해주세요
+</label>  
+
     
-    </table>
       
 </body>
 </html>
