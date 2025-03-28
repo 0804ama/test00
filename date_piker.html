@@ -5,6 +5,9 @@
 <meta http-equiv="X-UA-Compatible" id="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 <title>Flatpickr</title>
+ <!-- Mobiscroll CDN -->
+<link rel="stylesheet" href="https://cdn.mobiscroll.com/5.17.1/css/mobiscroll.min.css">
+<script src="https://cdn.mobiscroll.com/5.17.1/js/mobiscroll.min.js"></script>
 <style type="text/css">
     .testRadio{
     
@@ -13,17 +16,23 @@
     
 </style>
     
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>    
+
 <script type="text/javascript">
-  flatpickr("#datepicker", {
-    dateFormat: "Y-m-d"
-  });
+
+        mobiscroll.datepicker('#datepicker', {
+            controls: ['date'],  // 날짜 선택만 허용
+            dateFormat: 'yyyy-mm-dd', 
+            touchUi: true,  // 모바일에서 터치 지원
+            min: '2020-01-01',  // 최소 날짜
+            max: '2030-12-31'   // 최대 날짜
+        });
 
     
 </script>
 </head>
     
 <body>
+ <label for="datepicker">날짜 선택:</label>
  <input type="text" id="datepicker">
     
 </body>
