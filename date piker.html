@@ -11,6 +11,19 @@
     
     
 <script type="text/javascript">
-
+ document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("datepicker");
+    input.addEventListener("focus", function () {
+      this.type = "date";
+    });
+    input.addEventListener("blur", function () {
+      this.type = "text";
+    });
+  });
 </script>
 </head>
+<body>
+   <input type="text" id="datepicker">
+
+</body>
+</html>
