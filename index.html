@@ -196,10 +196,18 @@ function togle1() {
 <button type="button">멜론</button>
 <button type="button">애플</button>
 
+
+<div class="item-info-wrap" role="text"> <!-- role="text" 제공하여 분리된 초점 통합-->
+  <a class="..." href="#">  <!--href 속성 제공 --> 
+    고인돌
+  </a>
+</div>
+	
+
 <input type="file" name="file" aria-hidden="true">
 
 <div>
-  <div role="group"> <!-- role="group" 속성 제공 -->
+  <div role="group" aria-label="휴휴"> <!-- role="group" 속성 제공 -->
     <a href="..."> <!-- href 속성 제공, role="group", aria-label, type="button" 속성 삭제 -->
       <div role="text"> <!-- role="text" 속성 제공 --> 
         <span class="screen-out">전체 4개 배너 중 1번째 배너</span> <!-- 삭제한 aria-label 숨김 텍스트로 제공 -->
