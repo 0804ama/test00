@@ -198,6 +198,25 @@ function togle1() {
 
 <input type="file" name="file" aria-hidden="true">
 
+<div>
+  <div role="group"> <!-- role="group" 속성 제공 -->
+    <a href="..."> <!-- href 속성 제공, role="group", aria-label, type="button" 속성 삭제 -->
+      <div role="text"> <!-- role="text" 속성 제공 --> 
+        <span class="screen-out">전체 4개 배너 중 1번째 배너</span> <!-- 삭제한 aria-label 숨김 텍스트로 제공 -->
+        <div>        
+          <img src="" alt="ECOSEED" />  
+        </div>
+        <h6>
+          <p>함께 모은 에코씨드</p>
+          <p>1,406,470,300원</p>
+        </h6>
+          <p>더 나은 내일을 만들기 위해 사용해요</p>
+          <p>2025. 5. 12. 00:00 업데이트</p>
+      </div>
+    </a> ...(중략)...
+  </div>
+</div>
+
 
 <ul>
 	<li><button type="button" aria-current="page">1</button></li>
