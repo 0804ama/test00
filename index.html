@@ -196,7 +196,31 @@ function togle1() {
 <button type="button">멜론</button>
 <button type="button">애플</button>
 
+<div class="item_recommend">
+	<input type="checkbox" name="recommendItem" id="recommendItem0" class="inp_check" checked="checked"> 
+	<label for="recommendItem0" class="lab_recommend"> 
+		<span class="item_check"> 
+			<span class="ico_comm ico_check2">닫기</span> 
+		</span>
+		<span class="thumb_recommend"> 
+			<img src="../../images/temp/custom_b_emoticon1.png" class="img_custom" alt="이모티콘 이름"><!-- alt에 이모티콘 이름 삽입 --> 
+		</span> 
+	</label> 
+</div>
 
+<div> 
+  <input type="checkbox" name="recommendItem" id="recommendItem0" class="inp_check" checked="checked"> 
+  <label for="recommendItem0"> 
+    <span class="item_check"> 
+      <span class="ico_comm ico_check2"></span> <!-- 닫기 대체 텍스트 삭제 -->
+      <span class="thumb_recommend"> <!-- label 내부로 마크업 이동 -->
+        <img src="..." alt="이모티콘 이름">
+      </span>
+    </span> 
+  </label> 
+</div> 
+
+	
 <div class="item-info-wrap" role="text">
 	<a class="link-item">
 		<span class="screen-out">주문 공유</span> 
