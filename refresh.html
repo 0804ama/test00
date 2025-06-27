@@ -23,7 +23,7 @@
       const test1Div = document.getElementById("test1");
 
       refreshBtn.addEventListener("click", function () {
-        const newContent = `이곳은 test1 영역입니다.(변경완) - ${new Date().toLocaleTimeString()}`;
+        const newContent = `이곳은 test1 영역입니다.(변경완) <br> ${new Date().toLocaleTimeString()}`;
         test1Div.innerHTML = newContent;
 
         clickCount++;
