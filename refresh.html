@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부분 새로고침 버튼</title>
+    <link rel="stylesheet" href="styles.css">
+    <style type="text/css">
+      #test1 {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 10px;
+      }
+    </style>
+   <script type="text/javascript">
+       document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("refreshBtn").addEventListener("click", function () {
+        const newContent = `이곳은 test1 영역입니다. (변경됨) - ${new Date().toLocaleTimeString()}`;
+        document.getElementById("test1").innerHTML = newContent;
+        this.textContent = "새로고침2";
+      });
+    });  
+   </script>
+</head>
+<body>
+  <button id="refreshBtn">새로고침</button>
+
+  <div id="test1">
+    이곳은 test1 영역입니다. - 초기 콘텐츠
+  </div>
+</body>
+</html>
