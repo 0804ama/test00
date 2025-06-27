@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>부분 새로고침 버튼</title>
+    <title>부분 새로고침 버튼+토스트팝업</title>
     <link rel="stylesheet" href="styles.css">
     <style type="text/css">
      #test1 {
@@ -34,40 +34,53 @@
     }
     </style>
    <script type="text/javascript">
-       document.addEventListener("DOMContentLoaded", function () {
-      let clickCount = 1;
-
+      document.addEventListener("DOMContentLoaded", function () {
       const refreshBtn = document.getElementById("refreshBtn");
       const resetBtn = document.getElementById("resetBtn");
       const test1Div = document.getElementById("test1");
       const toast = document.getElementById("toast");
 
+      // 페이지 로드 시 버튼 텍스트를 현재 날짜+시간으로 초기 설정
+      function getCurrentDateTime() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+      }
+
+      refreshBtn.textContent = getCurrentDateTime();
+
       refreshBtn.addEventListener("click", function () {
         const newContent = `이곳은 test1 영역입니다.<br>- ${new Date().toLocaleTimeString()}`;
         test1Div.innerHTML = newContent;
 
-        clickCount++;
-        refreshBtn.textContent = `새로고침${clickCount}`;
+        // 새로고침 버튼 텍스트를 현재 날짜(yyyy-mm-dd) 형식으로 변경
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        refreshBtn.textContent = `${year}-${month}-${day}`;
 
         showToast("test1 영역이 새로고침되었습니다.");
       });
 
       resetBtn.addEventListener("click", function () {
-        clickCount = 1;
         test1Div.innerHTML = "이곳은 test1 영역입니다. - 초기 콘텐츠";
         refreshBtn.textContent = "새로고침";
       });
 
       function showToast(message) {
         toast.textContent = message;
-        toast.style.display = "block"; // display:none 제거해서 보이게 함
+        toast.style.display = "block";
         toast.classList.add("show");
 
         setTimeout(() => {
           toast.classList.remove("show");
-          // 숨기기 위해 display:none 다시 적용
           toast.style.display = "none";
-          // 초기 텍스트도 복원 
           toast.textContent = "안녕숨겨져 있어.";
         }, 2000);
       }
