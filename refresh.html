@@ -34,13 +34,12 @@
     }
     </style>
    <script type="text/javascript">
-      document.addEventListener("DOMContentLoaded", function () {
+     document.addEventListener("DOMContentLoaded", function () {
       const refreshBtn = document.getElementById("refreshBtn");
       const resetBtn = document.getElementById("resetBtn");
       const test1Div = document.getElementById("test1");
       const toast = document.getElementById("toast");
 
-      // 페이지 로드 시 버튼 텍스트를 현재 날짜+시간으로 초기 설정
       function getCurrentDateTime() {
         const now = new Date();
         const year = now.getFullYear();
@@ -58,12 +57,7 @@
         const newContent = `이곳은 test1 영역입니다.<br>- ${new Date().toLocaleTimeString()}`;
         test1Div.innerHTML = newContent;
 
-        // 새로고침 버튼 텍스트를 현재 날짜(yyyy-mm-dd) 형식으로 변경
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        refreshBtn.textContent = `${year}-${month}-${day}`;
+        refreshBtn.textContent = getCurrentDateTime();
 
         showToast("test1 영역이 새로고침되었습니다.");
       });
@@ -82,7 +76,7 @@
           toast.classList.remove("show");
           toast.style.display = "none";
           toast.textContent = "안녕숨겨져 있어.";
-        }, 2000);
+        }, 2000); //2초
       }
     });
   </script>
