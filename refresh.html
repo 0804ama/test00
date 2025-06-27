@@ -51,12 +51,16 @@
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
       }
 
-      refreshBtn.textContent = getCurrentDateTime();
-
-      refreshBtn.addEventListener("click", function () {
+      function updateContentAndButton() {
         const newContent = `이곳은 test1 영역입니다.<br>- ${new Date().toLocaleTimeString()}`;
         test1Div.innerHTML = newContent;
         refreshBtn.textContent = getCurrentDateTime();
+      }
+
+      refreshBtn.textContent = getCurrentDateTime();
+
+      refreshBtn.addEventListener("click", function () {
+        updateContentAndButton();
         showToast("test1 영역이 새로고침되었습니다.");
       });
 
@@ -67,11 +71,13 @@
 
       assertiveBtn.addEventListener("click", function () {
         toast.setAttribute("aria-live", "assertive");
+        updateContentAndButton();
         showToast("aria-live가 assertive로 변경되었습니다.");
       });
 
       politeBtn.addEventListener("click", function () {
         toast.setAttribute("aria-live", "polite");
+        updateContentAndButton();
         showToast("aria-live가 polite로 변경되었습니다.");
       });
 
