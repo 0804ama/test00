@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- 모바일 화면 대응 (확대/축소 방지) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>카카오톡 스포일러 테스트</title>
+    <title>스포방지_테스트</title>
     <style>
         :root {
             --kakao-yellow: #FEE500;
@@ -92,7 +92,7 @@
             padding: 8px 12px;
             background-color: white;
             border-top: 1px solid #ddd;
-            flex-shrink: 0; /* 높이 고정 */
+            flex-shrink: 0; /* 높이 고정 - 입력 영역이 항상 보이도록 보장 */
         }
 
         /* 텍스트 입력창 (contenteditable) */
@@ -155,9 +155,11 @@
             background-color: #333;
             border-radius: 6px;
             padding: 4px;
-            z-index: 100;
-            /* 선택 영역 상단 중앙에 위치 */
-            transform: translate(-50%, -110%);
+            z-index: 101; /* 다른 요소 위에 표시 */
+            /* 입력 영역 위 중앙에 위치하도록 CSS 조정 */
+            left: 50%;
+            transform: translateX(-50%); 
+            /* top은 JS에서 입력 영역 위치를 기준으로 설정할 것임 */
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -211,6 +213,7 @@
         const chatLog = document.getElementById('chat-log');
         const contextMenu = document.getElementById('context-menu');
         const spoilerButton = document.getElementById('spoiler-button');
+        const inputArea = document.getElementById('input-area'); // 입력 영역 요소 추가
 
         // 현재 사용자가 선택한 텍스트의 '범위(Range)'를 저장할 변수
         let currentSelectionRange = null;
@@ -227,13 +230,20 @@
                 // 텍스트가 실제로 '선택'되었을 때
                 if (selection && !selection.isCollapsed && selection.rangeCount > 0) {
                     currentSelectionRange = selection.getRangeAt(0).cloneRange();
-                    const rect = currentSelectionRange.getBoundingClientRect();
-
-                    // 메뉴 위치 설정 (선택 영역 상단 중앙)
-                    // getBoundingClientRect()는 뷰포트 기준이므로 반응형 환경에서도 잘 동작합니다.
-                    contextMenu.style.top = `${rect.top}px`;
-                    contextMenu.style.left = `${rect.left + (rect.width / 2)}px`;
+                    
+                    // --- 위치 수정: 입력 영역 바로 위 중앙에 표시 ---
+                    const inputRect = inputArea.getBoundingClientRect();
+                    
+                    // 툴팁의 대략적인 높이 (패딩 포함 40px 정도로 가정)
+                    // 실제 툴팁 높이를 가져올 수 없으므로(display: none 상태), 대략적인 값 사용
+                    const menuHeight = 40; 
+                    const margin = 8;
+                    
+                    // 입력 영역의 top 위치에서 툴팁 높이 + 마진 만큼 위로 설정
+                    contextMenu.style.top = `${inputRect.top - menuHeight - margin}px`;
                     contextMenu.style.display = 'block';
+                    // --- 위치 수정 끝 ---
+                    
                 } else {
                     // 텍스트 선택이 풀렸을 때
                     currentSelectionRange = null;
