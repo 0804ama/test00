@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- 모바일 화면 대응 (확대/축소 방지) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>스포방지_테스트</title>
+    <title>카카오톡 스포일러 테스트2</title>
     <style>
         :root {
             --kakao-yellow: #FEE500;
@@ -218,39 +218,62 @@
         // 현재 사용자가 선택한 텍스트의 '범위(Range)'를 저장할 변수
         let currentSelectionRange = null;
 
-        // --- 1. (입력창) 텍스트 선택 완료 시 (손가락 뗄 때) 툴팁 표시 ---
+        /**
+         * 텍스트가 선택되었는지 확인하고, 선택되었다면 스포방지 툴팁을 표시합니다.
+         * 이 함수는 touchend (터치), mouseup (마우스/데스크탑), 또는 보이스오버 등에 의해
+         * 텍스트 선택이 완료되었을 때 호출됩니다.
+         */
+        function showContextMenuIfTextSelected() {
+            const selection = window.getSelection();
+
+            // 텍스트가 실제로 '선택'되었을 때
+            if (selection && !selection.isCollapsed && selection.rangeCount > 0) {
+                // 선택된 텍스트가 현재 입력 영역(editor) 내부에 있는지 확인
+                const selectionRange = selection.getRangeAt(0);
+                if (!editor.contains(selectionRange.commonAncestorContainer) && selectionRange.commonAncestorContainer !== editor) {
+                    // 선택 영역이 editor 바깥이라면 메뉴를 띄우지 않습니다.
+                    currentSelectionRange = null;
+                    contextMenu.style.display = 'none';
+                    return;
+                }
+
+                currentSelectionRange = selectionRange.cloneRange();
+                
+                // --- 위치: 입력 영역 바로 위 중앙에 표시 ---
+                const inputRect = inputArea.getBoundingClientRect();
+                
+                // 툴팁 높이 및 마진 설정
+                const menuHeight = 40; 
+                const margin = 8;
+                
+                // 입력 영역의 top 위치에서 툴팁 높이 + 마진 만큼 위로 설정
+                contextMenu.style.top = `${inputRect.top - menuHeight - margin}px`;
+                contextMenu.style.display = 'block';
+                
+            } else {
+                // 텍스트 선택이 풀렸거나 선택되지 않았을 때
+                currentSelectionRange = null;
+                contextMenu.style.display = 'none';
+            }
+        }
+        
+        // --- 1. (입력창) 텍스트 선택 완료 시 리스너 ---
+
+        // 모바일 환경 (터치 종료 시)
         editor.addEventListener('touchend', (e) => {
             // 키보드가 올라오는 등의 이벤트를 방지하기 위해 터치만 확인
             if (e.touches.length > 0) return; 
 
             // selection 상태가 확정될 때까지 잠시 대기
-            setTimeout(() => {
-                const selection = window.getSelection();
-
-                // 텍스트가 실제로 '선택'되었을 때
-                if (selection && !selection.isCollapsed && selection.rangeCount > 0) {
-                    currentSelectionRange = selection.getRangeAt(0).cloneRange();
-                    
-                    // --- 위치 수정: 입력 영역 바로 위 중앙에 표시 ---
-                    const inputRect = inputArea.getBoundingClientRect();
-                    
-                    // 툴팁의 대략적인 높이 (패딩 포함 40px 정도로 가정)
-                    // 실제 툴팁 높이를 가져올 수 없으므로(display: none 상태), 대략적인 값 사용
-                    const menuHeight = 40; 
-                    const margin = 8;
-                    
-                    // 입력 영역의 top 위치에서 툴팁 높이 + 마진 만큼 위로 설정
-                    contextMenu.style.top = `${inputRect.top - menuHeight - margin}px`;
-                    contextMenu.style.display = 'block';
-                    // --- 위치 수정 끝 ---
-                    
-                } else {
-                    // 텍스트 선택이 풀렸을 때
-                    currentSelectionRange = null;
-                    contextMenu.style.display = 'none';
-                }
-            }, 50); // 50ms 대기
+            setTimeout(showContextMenuIfTextSelected, 50);
         });
+        
+        // 데스크탑/접근성 환경 (마우스 버튼 떼기 또는 블록 지정 완료 시)
+        editor.addEventListener('mouseup', () => {
+            // 브라우저가 선택을 처리할 시간을 주기 위해 setTimeout 사용
+            setTimeout(showContextMenuIfTextSelected, 50);
+        });
+
 
         // --- 2. [스포방지] 툴팁 버튼 클릭 시 ---
         spoilerButton.addEventListener('click', () => {
