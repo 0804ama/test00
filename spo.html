@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- 모바일 화면 대응 (확대/축소 방지) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>1카카오톡 스포일러 테스트</title>
+    <title> 2스포일러 테스트</title>
     <style>
         :root {
             --kakao-yellow: #FEE500;
@@ -283,22 +283,30 @@
         spoilerButton.addEventListener('click', () => {
             if (!currentSelectionRange) return;
 
-            // <span> 요소를 생성
+            // <span> 요소를 생성 (외부 마스크: 스크린 리더에게 "스포방지" 알림 역할)
             const spoilerSpan = document.createElement('span');
             spoilerSpan.className = 'spoiler-mask';
-
-            /**
-             * [접근성 핵심] VoiceOver/TalkBack 처리:
-             * role="img"와 aria-label을 사용하여, 스크린 리더가 숨겨진 텍스트 대신
-             * '스포방지'라는 텍스트를 읽도록 지시합니다. (요청 사항 반영 완료)
-             */
             spoilerSpan.setAttribute('role', 'img');
             spoilerSpan.setAttribute('aria-label', '스포방지');
 
+            // <span> 요소를 생성 (내부 래퍼: 숨겨진 텍스트를 담아 스크린 리더가 무시하도록 함)
+            const hiddenContentWrapper = document.createElement('span');
+            /** * [핵심 수정] aria-hidden="true"를 추가하여 
+             * 스크린 리더가 이 <span> 내부의 실제 텍스트를 읽지 않도록 합니다. 
+             */
+            hiddenContentWrapper.setAttribute('aria-hidden', 'true');
+
             try {
-                // 선택된 텍스트를 <span>으로 감쌉니다.
+                // 선택된 텍스트를 추출
                 const selectionContent = currentSelectionRange.extractContents();
-                spoilerSpan.appendChild(selectionContent);
+                
+                // 1. 추출된 내용을 숨김 래퍼에 추가 (실제 텍스트는 숨김 처리)
+                hiddenContentWrapper.appendChild(selectionContent);
+                
+                // 2. 숨김 래퍼를 외부 스포일러 마스크에 추가
+                spoilerSpan.appendChild(hiddenContentWrapper);
+                
+                // 3. 마스크(spoilerSpan)를 원래 위치에 삽입
                 currentSelectionRange.insertNode(spoilerSpan);
                 
             } catch (e) {
@@ -346,8 +354,16 @@
             if (spoilerMask) {
                 // <span>을 제거하고 내부의 텍스트 노드로 교체
                 // 스크린 리더는 이 시점부터 원래 텍스트를 읽게 됩니다.
-                const childNodes = Array.from(spoilerMask.childNodes);
-                spoilerMask.replaceWith(...childNodes);
+                // spoilerMask 내부에는 숨김 래퍼가 있으므로 그 내부의 내용을 가져옴
+                const hiddenWrapper = spoilerMask.querySelector('[aria-hidden="true"]');
+                if (hiddenWrapper) {
+                     const childNodes = Array.from(hiddenWrapper.childNodes);
+                     spoilerMask.replaceWith(...childNodes);
+                } else {
+                     // 예상치 못한 경우를 대비하여 직접 자식 노드 교체
+                     const childNodes = Array.from(spoilerMask.childNodes);
+                     spoilerMask.replaceWith(...childNodes);
+                }
                 
                 event.preventDefault(); // 더블클릭 기본 동작(텍스트 선택 등) 방지
             }
