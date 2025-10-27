@@ -1,85 +1,91 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" id="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-<title>스포방지_모웹테스트</title>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스포일러 방지 테스트 </title>
+    <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0;
+            font-family: sans-serif;
             padding: 20px;
-            background-color: #f4f4f4;
         }
         
-        h1 {
-            font-size: 1.5rem;
-        }
-
-        /* 스포일러 블록 컨테이너 */
-        .spoiler {
-            border: 1px solid #ddd;
+        .spoiler-container {
+            border: 1px solid #ccc;
             border-radius: 8px;
             margin-bottom: 16px;
-            background-color: #fff;
-            overflow: hidden; /* 테두리 반경(radius) 적용을 위해 */
         }
 
-        /* 클릭할 영역 (제목) */
-        .spoiler-trigger {
+        .spoiler-button {
+            width: 100%;
             padding: 16px;
+            font-size: 1rem;
             font-weight: bold;
+            text-align: left;
+            background-color: #f0f0f0;
+            border: none;
             cursor: pointer;
-            background-color: #fafafa;
-            /* 기본으로 제공되는 화살표 아이콘(marker) 숨기기 */
-            list-style: none;
-            display: block; /* summary 태그를 블록 레벨로 */
+            border-radius: 8px 8px 0 0;
         }
 
-        /* (선택 사항) 커스텀 아이콘 추가 */
-        .spoiler-trigger::before {
-            content: '▶ ';
-            margin-right: 8px;
-            font-size: 0.8em;
-        }
-        
-        /* <details> 태그가 'open' 상태일 때의 아이콘 */
-        details[open] .spoiler-trigger::before {
-            content: '▼ ';
-        }
-        
-        /* 숨겨질 내용 영역 */
-        .spoiler-content {
+        /* 스포일러 내용: 기본적으로 숨김 */
+        .spoiler-text {
+            display: none;
             padding: 16px;
             border-top: 1px solid #eee;
         }
+
+        /* 'active' 클래스가 추가되면 내용을 보여줌 */
+        .spoiler-text.active {
+            display: block;
+        }
     </style>
-    
 </head>
-    
 <body>
 
-    <h1>영화 리뷰</h1>
-    <p>이 영화는 정말 재미있습니다. 하지만 결말에 대한 스포일러가 있으니 주의하세요.</p>
+    <h1>JavaScript 스포일러 테스트</h1>
 
-    <details class="spoiler">
-        <summary class="spoiler-trigger">
-            ⚠️ [스포일러] 영화의 충격적인 결말 (클릭하여 보기)
-        </summary>
-        <div class="spoiler-content">
-            <p> 사실 주인공은 처음부터 유령이었습니다.</p>
+    <div class="spoiler-container">
+        <button class="spoiler-button">
+            ⚠️ [스포일러] 클릭하여 보기
+        </button>
+        <div class="spoiler-text">
+            <p>이곳에 스포일러 내용이 표시됩니다.</p>
+            <p>JavaScript로 제어되는 영역입니다.</p>
         </div>
-    </details>
-    <details class="spoiler">
-        <summary class="spoiler-trigger">
-            ⚠️ [스포일러] 쿠키 영상 내용 (클릭하여 보기)
-        </summary>
-        <div class="spoiler-content">
-            <p>쿠키 영상에서는 다음 편의 빌런이 등장합니다.</p>
+    </div>
+    
+    <div class="spoiler-container">
+        <button class="spoiler-button">
+            ⚠️ 두 번째 스포일러 (클릭)
+        </button>
+        <div class="spoiler-text">
+            <p>두 번째 스포일러 내용입니다.</p>
         </div>
-    </details>
+    </div>
 
-    <p>리뷰 끝.</p>
+    <script>
+        // 모든 스포일러 버튼을 선택합니다.
+        const spoilerButtons = document.querySelectorAll('.spoiler-button');
+
+        // 각 버튼에 클릭 이벤트 리스너를 추가합니다.
+        spoilerButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 클릭된 버튼의 바로 다음 형제 요소(.spoiler-text)를 찾습니다.
+                const content = button.nextElementSibling;
+                
+                // 'active' 클래스를 토글(있으면 제거, 없으면 추가)합니다.
+                content.classList.toggle('active');
+
+                // (선택 사항) 버튼 텍스트 변경
+                if (content.classList.contains('active')) {
+                    button.textContent = '🙈 스포일러 숨기기';
+                } else {
+                    button.textContent = '⚠️ [스포일러] 클릭하여 보기';
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
