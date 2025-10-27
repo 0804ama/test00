@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- 모바일 화면 대응 (확대/축소 방지) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>2카카오톡 스포일러 테스트</title>
+    <title>1카카오톡 스포일러 테스트</title>
     <style>
         :root {
             --kakao-yellow: #FEE500;
@@ -252,9 +252,7 @@
                 contextMenu.style.top = `${inputRect.top - menuHeight - margin}px`;
                 contextMenu.style.display = 'block';
 
-                // **요청 사항 반영:**
                 // 블록 지정 후 초점을 강제 이동시키지 않음. 순차 탐색 시 노출되도록만 함.
-                // (DOM 순서를 변경했기 때문에 이제 자연스럽게 다음 순서가 됨)
                 
             } else {
                 // 텍스트 선택이 풀렸거나 선택되지 않았을 때
@@ -291,8 +289,8 @@
 
             /**
              * [접근성 핵심] VoiceOver/TalkBack 처리:
-             * role="img"와 aria-label을 사용하여, 스크린 리더가 이 태그 내부의
-             * 마스킹된 텍스트 대신 '스포방지'라는 텍스트를 읽도록 지시합니다.
+             * role="img"와 aria-label을 사용하여, 스크린 리더가 숨겨진 텍스트 대신
+             * '스포방지'라는 텍스트를 읽도록 지시합니다. (요청 사항 반영 완료)
              */
             spoilerSpan.setAttribute('role', 'img');
             spoilerSpan.setAttribute('aria-label', '스포방지');
