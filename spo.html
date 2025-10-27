@@ -2,66 +2,144 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <!-- 모바일 화면 대응 (확대/축소 방지) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>스포일러 컨텍스트 메뉴 테스트</title>
+    <title>카카오톡 스포일러 테스트</title>
     <style>
+        :root {
+            --kakao-yellow: #FEE500;
+            --system-gray: #f0f0f0;
+            --system-dark-gray: #d0d0d0;
+            --system-blue: #007bff;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
-            padding: 16px;
-            background-color: #f9f9f9;
+            background-color: #A8C0D6; /* 카톡 채팅방 배경색 */
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* 화면 전체 높이 */
+            overflow: hidden; /* 스크롤 방지 */
         }
 
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
+        /* --- 상단 헤더 --- */
+        header {
+            background-color: #B2C7D9;
+            padding: 12px 16px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0; /* 높이 고정 */
         }
-        
-        p.instructions {
-            font-size: 0.9rem;
-            color: #555;
-            margin-top: 0;
+
+        /* --- 1. 채팅 메시지 영역 --- */
+        #chat-log {
+            flex-grow: 1; /* 남은 공간 모두 차지 */
+            overflow-y: auto; /* 메시지 많아지면 스크롤 */
+            padding: 16px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-bubble {
+            background-color: white;
+            padding: 8px 12px;
+            border-radius: 12px;
+            max-width: 70%;
+            word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
+            margin-bottom: 10px;
+            font-size: 1rem;
             line-height: 1.5;
         }
 
-        /* 텍스트 편집 영역 */
-        #text-editor {
-            width: 100%;
-            min-height: 300px; /* 영역을 넓게 */
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background-color: #fff;
-            box-sizing: border-box;
-            font-size: 1rem;
-            line-height: 1.6;
-            -webkit-user-select: text;
-            user-select: text;
+        /* 내가 보낸 메시지 (오른쪽 정렬) */
+        .message-bubble.sent {
+            background-color: var(--kakao-yellow);
+            align-self: flex-end; /* 오른쪽 정렬 */
+            border-top-right-radius: 2px;
         }
 
-        /* * 스포일러 처리된 텍스트 (span) 스타일 
-         * 스크린리더가 읽지 못하게 시각적으로만 처리
-         */
+        /* 다른 사람이 보낸 메시지 (왼쪽 정렬) */
+        .message-bubble.received {
+            background-color: white;
+            align-self: flex-start;
+            border-top-left-radius: 2px;
+        }
+
+        /* --- 2. 하단 입력 영역 --- */
+        #input-area {
+            display: flex;
+            align-items: flex-end; /* 텍스트가 길어져도 버튼은 하단 유지 */
+            padding: 8px 12px;
+            background-color: white;
+            border-top: 1px solid #ddd;
+            flex-shrink: 0; /* 높이 고정 */
+        }
+
+        /* 텍스트 입력창 (contenteditable) */
+        #text-editor {
+            flex-grow: 1;
+            min-height: 24px; /* 기본 한 줄 높이 */
+            max-height: 100px; /* 최대 4-5줄 */
+            overflow-y: auto;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 18px;
+            background-color: var(--system-gray);
+            font-size: 1rem;
+            line-height: 1.5;
+            -webkit-user-select: text;
+            user-select: text;
+            outline: none; /* 포커스 시 테두리 제거 */
+        }
+        
+        /* 텍스트 입력창의 Placeholder */
+        #text-editor:empty::before {
+            content: "메시지 입력...";
+            color: #999;
+        }
+
+        /* 전송 버튼 */
+        #send-button {
+            width: 40px;
+            height: 40px;
+            margin-left: 8px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background-color: var(--system-blue);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            flex-shrink: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        #send-button:active {
+            filter: brightness(0.9);
+        }
+
+        /* --- 3. 스포일러 마스크 스타일 --- */
         .spoiler-mask {
-            background-color: #d0d0d0; /* 회색 배경 */
-            color: #d0d0d0;           /* 텍스트 색상도 배경과 동일하게 */
+            background-color: var(--system-dark-gray);
+            color: var(--system-dark-gray);
             border-radius: 4px;
             padding: 0 2px;
-            /* 더블탭 시 텍스트가 선택되는 것을 방지 */
-            -webkit-user-select: none;
+            -webkit-user-select: none; /* 더블탭 시 선택 방지 */
             user-select: none;
         }
 
-        /* * 텍스트 블럭 지정 시 나타나는 컨텍스트 메뉴 
-         */
+        /* --- 4. 스포방지 툴팁 (컨텍스트 메뉴) --- */
         #context-menu {
-            display: none; /* 평소에는 숨김 */
-            position: absolute; /* 화면 기준으로 위치 지정 */
+            display: none;
+            position: absolute;
             background-color: #333;
             border-radius: 6px;
             padding: 4px;
             z-index: 100;
-            /* 중앙 정렬 및 위쪽 배치를 위한 transform */
+            /* 선택 영역 상단 중앙에 위치 */
             transform: translate(-50%, -110%);
             -webkit-tap-highlight-color: transparent;
         }
@@ -79,62 +157,67 @@
 </head>
 <body>
 
-    <h1>스포일러 마스킹 테스트 (V2)</h1>
-    <p class="instructions">
-        1. 아래 영역에 텍스트를 입력하세요.<br>
-        2. 숨기고 싶은 텍스트를 드래그한 후 <strong>손가락을 떼보세요.</strong><br>
-        3. 나타나는 <strong>[스포방지]</strong> 버튼을 누르세요.<br>
-        4. 회색 영역을 <strong>더블탭(두 번 터치)</strong>하면 해제됩니다.<br>
-        5. (테스트) VoiceOver/TalkBack을 켜고 회색 영역을 터치해보세요.
-    </p>
+    <header>채팅방</header>
 
-    <div id="text-editor" contenteditable="true" spellcheck="false">
-        <p>이곳에 텍스트를 입력하세요.</p>
-        <p>범인은 바로... (이 뒷부분을 드래그하고 손을 떼보세요)</p>
+    <!-- 채팅 메시지가 표시될 영역 -->
+    <div id="chat-log">
+        <div class="message-bubble received">
+            <p>안녕하세요! 스포일러 기능 테스트입니다.</p>
+            <p>아래 입력창에 글을 쓰고, 숨기고 싶은 부분을 드래그한 뒤 [스포방지] 버튼을 눌러보세요.</p>
+        </div>
     </div>
 
+    <!-- 하단 입력창 영역 -->
+    <div id="input-area">
+        <!-- 텍스트 입력은 이 div에서 합니다 -->
+        <div id="text-editor" contenteditable="true" spellcheck="false"></div>
+        <!-- 전송 버튼 -->
+        <button id="send-button" aria-label="전송">↑</button>
+    </div>
+
+    <!-- 숨겨진 스포방지 툴팁 -->
     <div id="context-menu">
         <button id="spoiler-button">스포방지</button>
     </div>
 
     <script>
+        // --- DOM 요소 가져오기 ---
         const editor = document.getElementById('text-editor');
+        const sendButton = document.getElementById('send-button');
+        const chatLog = document.getElementById('chat-log');
         const contextMenu = document.getElementById('context-menu');
         const spoilerButton = document.getElementById('spoiler-button');
 
         // 현재 사용자가 선택한 텍스트의 '범위(Range)'를 저장할 변수
         let currentSelectionRange = null;
 
-        // --- 1. 텍스트 선택 완료 시 (손가락을 뗄 때) 메뉴 표시 ---
-        editor.addEventListener('touchend', () => {
-            // selection 상태가 확정될 때까지 잠시 대기 (50ms)
+        // --- 1. (입력창) 텍스트 선택 완료 시 (손가락 뗄 때) 툴팁 표시 ---
+        editor.addEventListener('touchend', (e) => {
+            // 키보드가 올라오는 등의 이벤트를 방지하기 위해 터치만 확인
+            if (e.touches.length > 0) return; 
+
+            // selection 상태가 확정될 때까지 잠시 대기
             setTimeout(() => {
                 const selection = window.getSelection();
 
-                // 1-1. 텍스트가 실제로 '선택'되었을 때 (커서만 깜빡이는 게 아닐 때)
+                // 텍스트가 실제로 '선택'되었을 때
                 if (selection && !selection.isCollapsed && selection.rangeCount > 0) {
-                    // 선택한 범위를 저장
                     currentSelectionRange = selection.getRangeAt(0).cloneRange();
-                    
-                    // 선택한 영역의 위치 정보를 가져옴
                     const rect = currentSelectionRange.getBoundingClientRect();
 
-                    // 메뉴 위치 설정 (선택 영역의 중간 위쪽)
+                    // 메뉴 위치 설정 (선택 영역 상단 중앙)
                     contextMenu.style.top = `${rect.top}px`;
                     contextMenu.style.left = `${rect.left + (rect.width / 2)}px`;
-                    
-                    // 메뉴 표시
                     contextMenu.style.display = 'block';
-
                 } else {
-                    // 1-2. 텍스트 선택이 풀렸을 때
+                    // 텍스트 선택이 풀렸을 때
                     currentSelectionRange = null;
                     contextMenu.style.display = 'none';
                 }
-            }, 50);
+            }, 50); // 50ms 대기
         });
 
-        // --- 2. [스포방지] 버튼 클릭 시 ---
+        // --- 2. [스포방지] 툴팁 버튼 클릭 시 ---
         spoilerButton.addEventListener('click', () => {
             if (!currentSelectionRange) return;
 
@@ -143,17 +226,17 @@
             spoilerSpan.className = 'spoiler-mask';
 
             /**
-             * [핵심] 접근성 처리 (Accessibility)
+             * [핵심] 접근성 처리 (VoiceOver/TalkBack)
              * role="img" 와 aria-label 을 사용하면, 스크린 리더는
              * 이 태그 내부의 텍스트(스포일러 내용)를 무시하고
              * aria-label에 지정된 "스포방지"라는 텍스트만 읽어줍니다.
+             * (role="img"는 이 요소가 그래픽 요소임을 알려줍니다)
              */
             spoilerSpan.setAttribute('role', 'img');
             spoilerSpan.setAttribute('aria-label', '스포방지');
 
             try {
                 // 선택된 텍스트를 <span>으로 감쌉니다.
-                // (surroundContents 대신 extract/insert를 사용하면 더 안정적)
                 const selectionContent = currentSelectionRange.extractContents();
                 spoilerSpan.appendChild(selectionContent);
                 currentSelectionRange.insertNode(spoilerSpan);
@@ -166,29 +249,53 @@
             contextMenu.style.display = 'none';
             currentSelectionRange = null;
             window.getSelection().removeAllRanges();
+            editor.focus(); // 편집기에 다시 포커스
         });
 
-        // --- 3. 회색 영역 더블탭 시 스포일러 해제 ---
-        editor.addEventListener('dblclick', (event) => {
-            const clickedElement = event.target;
+        // --- 3. [전송] 버튼 클릭 시 ---
+        sendButton.addEventListener('click', () => {
+            // 입력창의 HTML 내용을 그대로 가져옵니다.
+            const messageHtml = editor.innerHTML.trim();
+
+            if (messageHtml === "") {
+                return; // 내용이 없으면 전송 안 함
+            }
+
+            // 새 메시지 버블 생성
+            const messageBubble = document.createElement('div');
+            messageBubble.className = 'message-bubble sent'; // 'sent' 클래스 추가
+            messageBubble.innerHTML = messageHtml; // HTML을 그대로 삽입
+
+            // 채팅 로그에 추가
+            chatLog.appendChild(messageBubble);
+
+            // 입력창 비우기
+            editor.innerHTML = '';
+
+            // 채팅창 스크롤을 맨 아래로 내리기
+            chatLog.scrollTop = chatLog.scrollHeight;
+        });
+
+        // --- 4. 스포일러 해제 (더블탭) ---
+        // 채팅 로그와 입력창 모두에서 동작하도록 document 전체에 이벤트 위임
+        document.body.addEventListener('dblclick', (event) => {
+            // 이벤트가 발생한 요소 또는 그 부모 중에 .spoiler-mask 를 찾음
+            const spoilerMask = event.target.closest('.spoiler-mask');
             
-            // 클릭된 요소가 .spoiler-mask 인지 확인
-            if (clickedElement.classList.contains('spoiler-mask')) {
+            if (spoilerMask) {
                 // <span>을 제거하고 내부의 텍스트 노드로 교체
-                const childNodes = Array.from(clickedElement.childNodes);
-                clickedElement.replaceWith(...childNodes);
+                const childNodes = Array.from(spoilerMask.childNodes);
+                spoilerMask.replaceWith(...childNodes);
                 
-                // 더블탭 시 텍스트가 다시 선택되는 것을 방지
-                event.preventDefault();
+                event.preventDefault(); // 더블클릭 기본 동작(텍스트 선택 등) 방지
             }
         });
 
-        // --- 4. (UX) 편집 영역이나 메뉴가 아닌 곳을 터치하면 메뉴 숨기기 ---
+        // --- 5. (UX) 툴팁 외의 영역 터치 시 툴팁 숨기기 ---
         document.addEventListener('touchstart', (event) => {
-            if (!editor.contains(event.target) && !contextMenu.contains(event.target)) {
+            // 툴팁이나 편집기 내부를 터치한 게 아니라면
+            if (!contextMenu.contains(event.target) && !editor.contains(event.target)) {
                 contextMenu.style.display = 'none';
-                currentSelectionRange = null;
-                // window.getSelection().removeAllRanges(); // 선택은 유지시킬 수 있음
             }
         });
 
