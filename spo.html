@@ -16,26 +16,27 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
-            /* body는 이제 시뮬레이터의 바깥 배경이 됩니다. */
-            background-color: #e0e0e0;
-            /* 기존 flex, height, overflow 속성 제거 */
+            /* 모바일 기기의 뷰포트 전체 높이를 차지하도록 설정 */
+            height: 100vh; 
+            overflow: hidden; /* 스크롤 방지 */
+            background-color: #A8C0D6; /* 카톡 채팅방 배경색을 body에 기본 적용 */
         }
 
-        /* --- S23 시뮬레이터 래퍼 --- */
+        /* --- 메인 컨테이너 (이전 S23 시뮬레이터 래퍼) --- */
+        /* 화면 크기에 맞춰 100%를 사용하도록 변경 */
         #device-simulator {
-            width: 360px; /* S23의 일반적인 CSS 가로 폭 */
-            height: 780px; /* S23의 일반적인 CSS 세로 폭 (19.5:9 비율) */
-            margin: 20px auto; /* 데스크탑 화면에서 중앙 정렬 */
-            border: 12px solid #111;
-            border-radius: 40px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            width: 100%; 
+            height: 100%; 
+            margin: 0;
+            border: none; /* 프레임 효과 제거 */
+            border-radius: 0; /* 모서리 둥글게 처리 제거 */
+            box-shadow: none; /* 그림자 효과 제거 */
             
-            /* --- 기존 body의 flex 속성을 이곳으로 이전 --- */
+            /* 레이아웃 구조는 유지: 세로 방향으로 요소 배치 */
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* 프레임 밖으로 나가지 않도록 */
+            overflow: hidden; 
             background-color: #A8C0D6; /* 카톡 채팅방 배경색 */
-            /* 툴팁 위치 계산을 위해 position:relative 는 추가하지 않음 */
         }
 
 
@@ -173,7 +174,7 @@
 </head>
 <body>
 
-    <!-- S23 시뮬레이터 래퍼 시작 -->
+    <!-- 메인 컨테이너 시작 (모바일 뷰포트 전체 사용) -->
     <div id="device-simulator">
 
         <header>채팅방</header>
@@ -195,7 +196,7 @@
         </div>
 
     </div>
-    <!-- S23 시뮬레이터 래퍼 끝 -->
+    <!-- 메인 컨테이너 끝 -->
 
 
     <!-- 숨겨진 스포방지 툴팁 (body의 자식으로 유지) -->
@@ -229,7 +230,7 @@
                     const rect = currentSelectionRange.getBoundingClientRect();
 
                     // 메뉴 위치 설정 (선택 영역 상단 중앙)
-                    // getBoundingClientRect()는 뷰포트 기준이므로 시뮬레이터 프레임 위치와 상관없이 잘 동작합니다.
+                    // getBoundingClientRect()는 뷰포트 기준이므로 반응형 환경에서도 잘 동작합니다.
                     contextMenu.style.top = `${rect.top}px`;
                     contextMenu.style.left = `${rect.left + (rect.width / 2)}px`;
                     contextMenu.style.display = 'block';
@@ -302,6 +303,7 @@
 
         // --- 4. 스포일러 해제 (더블탭) ---
         // 채팅 로그와 입력창 모두에서 동작하도록 document 전체에 이벤트 위임
+        // **전송된 메시지에도 자동으로 적용됩니다.**
         document.body.addEventListener('dblclick', (event) => {
             // 이벤트가 발생한 요소 또는 그 부모 중에 .spoiler-mask 를 찾음
             const spoilerMask = event.target.closest('.spoiler-mask');
@@ -327,4 +329,3 @@
 
 </body>
 </html>
-
