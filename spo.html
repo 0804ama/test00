@@ -2,88 +2,148 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>스포일러 방지 테스트 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>스포일러 블럭 처리 테스트</title>
     <style>
         body {
-            font-family: sans-serif;
-            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 16px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
         }
         
-        .spoiler-container {
+        p.instructions {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+
+        /* 텍스트를 입력하고 수정할 수 있는 편집 영역 */
+        #text-editor {
+            width: 100%;
+            min-height: 200px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            margin-bottom: 16px;
+            background-color: #fff;
+            box-sizing: border-box; /* 패딩이 너비를 초과하지 않도록 설정 */
+            font-size: 1rem;
+            line-height: 1.6;
+            /* 사용자가 터치하여 입력할 수 있도록 설정 */
+            -webkit-user-select: text;
+            user-select: text;
         }
 
-        .spoiler-button {
+        /* 숨김 처리 버튼 */
+        #hide-button {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
+            margin-top: 12px;
             font-size: 1rem;
             font-weight: bold;
-            text-align: left;
-            background-color: #f0f0f0;
+            color: white;
+            background-color: #007bff;
             border: none;
+            border-radius: 8px;
             cursor: pointer;
-            border-radius: 8px 8px 0 0;
+            /* 터치 시 파란색 하이라이트 제거 */
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        #hide-button:active {
+            background-color: #0056b3;
         }
 
-        /* 스포일러 내용: 기본적으로 숨김 */
-        .spoiler-text {
-            display: none;
-            padding: 16px;
-            border-top: 1px solid #eee;
-        }
-
-        /* 'active' 클래스가 추가되면 내용을 보여줌 */
-        .spoiler-text.active {
-            display: block;
+        /* * 스포일러 처리된 텍스트(span)의 스타일 
+         */
+        .spoiler-mask {
+            background-color: #d0d0d0; /* 회색 배경 */
+            color: #d0d0d0;           /* 텍스트 색상도 배경과 동일하게 */
+            border-radius: 4px;
+            padding: 0 2px;
+            /* 더블탭 시 텍스트가 선택되는 것을 방지 */
+            -webkit-user-select: none;
+            user-select: none;
         }
     </style>
 </head>
 <body>
 
-    <h1>JavaScript 스포일러 테스트</h1>
+    <h1>스포일러 마스킹 테스트</h1>
+    <p class="instructions">
+        1. 아래 텍스트 영역에 글을 입력하거나 수정하세요.<br>
+        2. 숨기고 싶은 텍스트를 드래그하여 <strong>블럭 지정</strong>하세요.<br>
+        3. <strong>[선택 영역 숨기기]</strong> 버튼을 누르세요.<br>
+        4. 회색 영역을 <strong>더블탭(두 번 터치)</strong>하면 내용이 다시 보입니다.
+    </p>
 
-    <div class="spoiler-container">
-        <button class="spoiler-button">
-            ⚠️ [스포일러] 클릭하여 보기
-        </button>
-        <div class="spoiler-text">
-            <p>이곳에 스포일러 내용이 표시됩니다.</p>
-            <p>JavaScript로 제어되는 영역입니다.</p>
-        </div>
-    </div>
-    
-    <div class="spoiler-container">
-        <button class="spoiler-button">
-            ⚠️ 두 번째 스포일러 (클릭)
-        </button>
-        <div class="spoiler-text">
-            <p>두 번째 스포일러 내용입니다.</p>
-        </div>
+    <button id="hide-button">선택 영역 숨기기</button>
+
+    <div id="text-editor" contenteditable="true" spellcheck="false">
+        <p>이곳에 텍스트를 입력하세요.</p>
+        <p>예를 들어, <strong style="color:blue;">이 부분을 드래그</strong>해서 숨길 수 있습니다.</p>
+        <p>범인은 바로... (이 뒷부분을 숨겨보세요!)</p>
     </div>
 
     <script>
-        // 모든 스포일러 버튼을 선택합니다.
-        const spoilerButtons = document.querySelectorAll('.spoiler-button');
+        const hideButton = document.getElementById('hide-button');
+        const editor = document.getElementById('text-editor');
 
-        // 각 버튼에 클릭 이벤트 리스너를 추가합니다.
-        spoilerButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // 클릭된 버튼의 바로 다음 형제 요소(.spoiler-text)를 찾습니다.
-                const content = button.nextElementSibling;
+        // --- 1. '선택 영역 숨기기' 버튼 클릭 이벤트 ---
+        hideButton.addEventListener('click', () => {
+            // 현재 사용자가 선택한(블럭 지정한) 영역을 가져옵니다.
+            const selection = window.getSelection();
+
+            // 선택된 영역이 없거나, 그냥 커서만 깜빡이는 상태면 함수 종료
+            if (!selection.rangeCount || selection.isCollapsed) {
+                return;
+            }
+
+            // 선택된 텍스트의 범위를 가져옵니다.
+            const range = selection.getRangeAt(0);
+
+            // 선택된 텍스트를 감쌀 <span> 요소를 생성합니다.
+            const spoilerSpan = document.createElement('span');
+            spoilerSpan.className = 'spoiler-mask'; // 위에서 정의한 CSS 클래스 적용
+
+            try {
+                // 이 함수가 핵심입니다.
+                // 선택된 영역(range)의 내용을 spoilerSpan으로 감쌉니다.
+                range.surroundContents(spoilerSpan);
+            } catch (e) {
+                // 만약 선택 영역이 P 태그 등을 가로지르면 오류가 날 수 있습니다.
+                // 이 예제에서는 간단하게 처리합니다.
+                console.warn("선택 영역을 감싸는 데 실패했습니다.", e);
+            }
+
+            // 처리 후, 텍스트 선택(블럭) 상태를 해제합니다.
+            selection.removeAllRanges();
+        });
+
+        // --- 2. 회색 영역 더블탭(더블클릭) 이벤트 ---
+        
+        // 편집기 영역(editor) 전체에 이벤트 리스너를 한 번만 등록합니다. (이벤트 위임)
+        // 이렇게 하면 나중에 생성되는 .spoiler-mask 에도 이벤트가 적용됩니다.
+        editor.addEventListener('dblclick', (event) => {
+            // 이벤트가 발생한 요소를 찾습니다.
+            const clickedElement = event.target;
+            
+            // 클릭된 요소가 .spoiler-mask 클래스를 가지고 있는지 확인합니다.
+            if (clickedElement.classList.contains('spoiler-mask')) {
+                // .spoiler-mask (span)를 제거하고 내부의 텍스트만 남깁니다.
                 
-                // 'active' 클래스를 토글(있으면 제거, 없으면 추가)합니다.
-                content.classList.toggle('active');
-
-                // (선택 사항) 버튼 텍스트 변경
-                if (content.classList.contains('active')) {
-                    button.textContent = '🙈 스포일러 숨기기';
-                } else {
-                    button.textContent = '⚠️ [스포일러] 클릭하여 보기';
-                }
-            });
+                // <span>의 자식 노드들(텍스트 포함)을 가져옵니다.
+                const childNodes = Array.from(clickedElement.childNodes);
+                
+                // <span>을 자식 노드들로 교체합니다. (span 태그가 사라짐)
+                clickedElement.replaceWith(...childNodes);
+            }
         });
     </script>
 
