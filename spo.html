@@ -16,12 +16,28 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
-            background-color: #A8C0D6; /* 카톡 채팅방 배경색 */
+            /* body는 이제 시뮬레이터의 바깥 배경이 됩니다. */
+            background-color: #e0e0e0;
+            /* 기존 flex, height, overflow 속성 제거 */
+        }
+
+        /* --- S23 시뮬레이터 래퍼 --- */
+        #device-simulator {
+            width: 360px; /* S23의 일반적인 CSS 가로 폭 */
+            height: 780px; /* S23의 일반적인 CSS 세로 폭 (19.5:9 비율) */
+            margin: 20px auto; /* 데스크탑 화면에서 중앙 정렬 */
+            border: 12px solid #111;
+            border-radius: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            
+            /* --- 기존 body의 flex 속성을 이곳으로 이전 --- */
             display: flex;
             flex-direction: column;
-            height: 100vh; /* 화면 전체 높이 */
-            overflow: hidden; /* 스크롤 방지 */
+            overflow: hidden; /* 프레임 밖으로 나가지 않도록 */
+            background-color: #A8C0D6; /* 카톡 채팅방 배경색 */
+            /* 툴팁 위치 계산을 위해 position:relative 는 추가하지 않음 */
         }
+
 
         /* --- 상단 헤더 --- */
         header {
@@ -157,25 +173,32 @@
 </head>
 <body>
 
-    <header>채팅방</header>
+    <!-- S23 시뮬레이터 래퍼 시작 -->
+    <div id="device-simulator">
 
-    <!-- 채팅 메시지가 표시될 영역 -->
-    <div id="chat-log">
-        <div class="message-bubble received">
-            <p>안녕하세요! 스포일러 기능 테스트입니다.</p>
-            <p>아래 입력창에 글을 쓰고, 숨기고 싶은 부분을 드래그한 뒤 [스포방지] 버튼을 눌러보세요.</p>
+        <header>채팅방</header>
+
+        <!-- 채팅 메시지가 표시될 영역 -->
+        <div id="chat-log">
+            <div class="message-bubble received">
+                <p>안녕하세요! 스포일러 기능 테스트입니다.</p>
+                <p>아래 입력창에 글을 쓰고, 숨기고 싶은 부분을 드래그한 뒤 [스포방지] 버튼을 눌러보세요.</p>
+            </div>
         </div>
-    </div>
 
-    <!-- 하단 입력창 영역 -->
-    <div id="input-area">
-        <!-- 텍스트 입력은 이 div에서 합니다 -->
-        <div id="text-editor" contenteditable="true" spellcheck="false"></div>
-        <!-- 전송 버튼 -->
-        <button id="send-button" aria-label="전송">↑</button>
-    </div>
+        <!-- 하단 입력창 영역 -->
+        <div id="input-area">
+            <!-- 텍스트 입력은 이 div에서 합니다 -->
+            <div id="text-editor" contenteditable="true" spellcheck="false"></div>
+            <!-- 전송 버튼 -->
+            <button id="send-button" aria-label="전송">↑</button>
+        </div>
 
-    <!-- 숨겨진 스포방지 툴팁 -->
+    </div>
+    <!-- S23 시뮬레이터 래퍼 끝 -->
+
+
+    <!-- 숨겨진 스포방지 툴팁 (body의 자식으로 유지) -->
     <div id="context-menu">
         <button id="spoiler-button">스포방지</button>
     </div>
@@ -206,6 +229,7 @@
                     const rect = currentSelectionRange.getBoundingClientRect();
 
                     // 메뉴 위치 설정 (선택 영역 상단 중앙)
+                    // getBoundingClientRect()는 뷰포트 기준이므로 시뮬레이터 프레임 위치와 상관없이 잘 동작합니다.
                     contextMenu.style.top = `${rect.top}px`;
                     contextMenu.style.left = `${rect.left + (rect.width / 2)}px`;
                     contextMenu.style.display = 'block';
@@ -303,3 +327,4 @@
 
 </body>
 </html>
+
