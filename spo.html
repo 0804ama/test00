@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- 모바일 화면 대응 (확대/축소 방지) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title> 2스포일러 테스트</title>
+    <title>카카오톡 스포일러 테스트</title>
     <style>
         :root {
             --kakao-yellow: #FEE500;
@@ -147,6 +147,19 @@
             -webkit-user-select: none; /* 더블탭 시 선택 방지 */
             user-select: none;
         }
+        
+        /* Screen Reader Only: 시각적으로 숨기고 스크린 리더에게만 노출 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
 
         /* --- 4. 스포방지 툴팁 (컨텍스트 메뉴) --- */
         #context-menu {
@@ -283,31 +296,40 @@
         spoilerButton.addEventListener('click', () => {
             if (!currentSelectionRange) return;
 
-            // <span> 요소를 생성 (외부 마스크: 스크린 리더에게 "스포방지" 알림 역할)
+            // 1. [스포방지 시작] 마커 생성 (시각적으로 숨겨짐)
+            const startMarker = document.createElement('span');
+            startMarker.className = 'sr-only spoiler-marker-start'; 
+            startMarker.textContent = '스포방지 시작';
+
+            // 2. [스포방지 끝] 마커 생성 (시각적으로 숨겨짐)
+            const endMarker = document.createElement('span');
+            endMarker.className = 'sr-only spoiler-marker-end'; 
+            endMarker.textContent = '스포방지 끝';
+
+            // 3. 외부 스포일러 마스크 생성 (메인 콘텐츠: "스포방지"로 읽힘)
             const spoilerSpan = document.createElement('span');
             spoilerSpan.className = 'spoiler-mask';
             spoilerSpan.setAttribute('role', 'img');
             spoilerSpan.setAttribute('aria-label', '스포방지');
 
-            // <span> 요소를 생성 (내부 래퍼: 숨겨진 텍스트를 담아 스크린 리더가 무시하도록 함)
+            // 4. 내부 숨김 래퍼 생성 (실제 텍스트를 담아 스크린 리더가 무시하도록 함)
             const hiddenContentWrapper = document.createElement('span');
-            /** * [핵심 수정] aria-hidden="true"를 추가하여 
-             * 스크린 리더가 이 <span> 내부의 실제 텍스트를 읽지 않도록 합니다. 
-             */
             hiddenContentWrapper.setAttribute('aria-hidden', 'true');
 
             try {
-                // 선택된 텍스트를 추출
+                // 5. 선택된 텍스트 추출 및 숨김 래퍼에 추가
                 const selectionContent = currentSelectionRange.extractContents();
-                
-                // 1. 추출된 내용을 숨김 래퍼에 추가 (실제 텍스트는 숨김 처리)
                 hiddenContentWrapper.appendChild(selectionContent);
-                
-                // 2. 숨김 래퍼를 외부 스포일러 마스크에 추가
                 spoilerSpan.appendChild(hiddenContentWrapper);
-                
-                // 3. 마스크(spoilerSpan)를 원래 위치에 삽입
-                currentSelectionRange.insertNode(spoilerSpan);
+
+                // 6. Document Fragment 생성 및 순서대로 요소 추가: [시작] [스포일러] [끝]
+                const fragment = document.createDocumentFragment();
+                fragment.appendChild(startMarker);
+                fragment.appendChild(spoilerSpan);
+                fragment.appendChild(endMarker);
+
+                // 7. Fragment를 원래 선택 범위 위치에 삽입
+                currentSelectionRange.insertNode(fragment);
                 
             } catch (e) {
                 console.warn("스포일러 처리에 실패했습니다:", e);
@@ -345,24 +367,45 @@
         });
 
         // --- 4. 스포일러 해제 (더블탭) ---
-        // 채팅 로그와 입력창 모두에서 동작하도록 document 전체에 이벤트 위임
-        // **전송된 메시지에도 자동으로 적용됩니다.**
         document.body.addEventListener('dblclick', (event) => {
             // 이벤트가 발생한 요소 또는 그 부모 중에 .spoiler-mask 를 찾음
             const spoilerMask = event.target.closest('.spoiler-mask');
             
             if (spoilerMask) {
-                // <span>을 제거하고 내부의 텍스트 노드로 교체
-                // 스크린 리더는 이 시점부터 원래 텍스트를 읽게 됩니다.
-                // spoilerMask 내부에는 숨김 래퍼가 있으므로 그 내부의 내용을 가져옴
+                
+                // 인접한 시작/끝 마커 찾기
+                const startMarker = spoilerMask.previousElementSibling;
+                const endMarker = spoilerMask.nextElementSibling;
+
+                // 마커 클래스 확인
+                const isStartMarker = startMarker && startMarker.classList.contains('spoiler-marker-start');
+                const isEndMarker = endMarker && endMarker.classList.contains('spoiler-marker-end');
+
+                // 내부 숨김 텍스트 추출
                 const hiddenWrapper = spoilerMask.querySelector('[aria-hidden="true"]');
+                
                 if (hiddenWrapper) {
                      const childNodes = Array.from(hiddenWrapper.childNodes);
+                     
+                     // 1. 원래 텍스트를 마스크 위치에 삽입
                      spoilerMask.replaceWith(...childNodes);
+                     
+                     // 2. 시작 마커 제거
+                     if (isStartMarker) {
+                         startMarker.remove();
+                     }
+                     // 3. 끝 마커 제거
+                     if (isEndMarker) {
+                         endMarker.remove();
+                     }
+
                 } else {
-                     // 예상치 못한 경우를 대비하여 직접 자식 노드 교체
+                     // 예상치 못한 경우를 대비하여 직접 자식 노드 교체 및 마커 제거 시도
                      const childNodes = Array.from(spoilerMask.childNodes);
                      spoilerMask.replaceWith(...childNodes);
+                     
+                     if (isStartMarker) startMarker.remove();
+                     if (isEndMarker) endMarker.remove();
                 }
                 
                 event.preventDefault(); // 더블클릭 기본 동작(텍스트 선택 등) 방지
