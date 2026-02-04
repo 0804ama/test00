@@ -199,6 +199,23 @@ function togle1() {
 <h5>
 	<button type="button"> 호호호호 </button>
 </h5>
+
+<hr>
+<div>
+  <input type="checkbox" id="test01" aria-labelledby="test02" />  <!-- checkbox 유형정보 제공, for/id 연결, 음성 출력을 위해 aria-labelledby 속성 제공 --> 
+  <label for="test01"> <!-- 초점을 하나로 통합 하기 위해 label 태그 제공 -->
+    <div aria-hidden="true" id="test02"> <!-- 중복 내용 출력 방지를 위해 aria-hidden 속성 제공, 음성 출력을 위해 id 제공 -->
+      <span>
+        <img src="..." alt=""/>  <!-- alt 빈값 제공 -->
+      </span>
+      <p>2026.02.04 (133787701)</p>
+      <p>[제주 농가돕기]당도 선별 신품종 윈터프린스 2.5kg (중자 / 대자 택1)</p>
+      <p>사이즈-중과 2.5kg(11-15입)</p>
+    </div>
+  </label>
+</div>
+
+<hr>
 <button type="button">멜론</button>
 <button type="button">애플</button>
 <hr>
@@ -1631,6 +1648,7 @@ function togle1() {
     
 </body>
 </html>
+
 
 
 
