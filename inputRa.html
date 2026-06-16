@@ -6,70 +6,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 <title>인풋라디오 ios 초점</title>
 <style type="text/css">
-
- * { box-sizing: border-box; }
-body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
-h2 { font-size: 18px; }
-h3 { font-size: 14px; margin: 24px 0 8px; }
-
-.friend-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  max-width: 320px;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #ddd;
-}
-
-/* 공통 li 스타일 */
-.friend-item {
-  position: relative; /* ← 오버레이 기준점 */
-  border-bottom: 1px solid #eee;
-}
-.friend-item:last-child { border-bottom: none; }
-
-.friend-item label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  cursor: pointer;
-}
-.friend-item label img {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-}
-
-/* ===== 수정 전: sr-only ===== */
 .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0); /* ← 포커스 링 잘림 */
-  white-space: nowrap;
-  border: 0;
+   clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    position: absolute;
+    overflow: hidden;   
 }
-
-/* ===== 수정 후: opacity 오버레이 (방법 1) ===== */
-.radio-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  margin: 0;
-  cursor: pointer;
-  z-index: 1;
-  /* clip 없음 → 포커스 링이 li 전체 영역에 표시됨 */
-}
-    
 </style>
     
     
@@ -79,20 +26,21 @@ h3 { font-size: 14px; margin: 24px 0 8px; }
 </head>
     
 <body>
-  <h3>인풀 라디오 초점</h3>
-  <ul class="friend-list">
-    <li class="friend-item">
-      <input type="radio" class="radio-overlay" id="after-1" name="after" value="1" />
+  <ul>
+    <li>
+      <input type="radio" id="after-1" class="sr-only" name="after" value="1" >
       <label for="after-1">
-        <img src="https://placehold.co/40x40" alt="" />
+        <img src="https://placehold.co/40x40" alt="" >
         <span>레아 2650</span>
+        <img src="https://placehold.co/40x40" alt="" >
       </label>
     </li>
-    <li class="friend-item">
-      <input type="radio" class="radio-overlay" id="after-2" name="after" value="2" />
+    <li>
+      <input type="radio" id="after-2" class="sr-only" name="after" value="2" >
       <label for="after-2">
-        <img src="https://placehold.co/40x40" alt="" />
-        <span>아마_샌드ios</span>
+        <img src="https://placehold.co/40x40" alt="" >
+        <span>아마 ㅇㅇㅇ</span>
+        <img src="https://placehold.co/40x40" alt="" >
       </label>
     </li>
   </ul>
