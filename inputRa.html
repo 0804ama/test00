@@ -17,6 +17,25 @@
     position: absolute;
     overflow: hidden;   
 }
+
+   /* label이 기준점 역할 */
+label {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* radio에만 sr-only 오버라이드 */
+input[type="radio"].sr-only {
+    width: 100%;        /* label 전체 너비 */
+    height: 100%;       /* label 전체 높이 */
+    top: 0;
+    left: 0;
+    margin: 0;
+    opacity: 0;         /* 시각적으로 숨김 */
+    clip-path: none;    /* 클리핑 제거 */
+    overflow: visible;  /* 초점 링 허용 */
+}
 </style>
     
     
@@ -28,6 +47,23 @@
 <body>
   <ul>
     <li>
+       <li>
+           <label>
+             <input type="radio" class="sr-only" name="after" value="1">
+             <img src="https://placehold.co/40x40" alt="">
+             <span>레아 2650</span>
+             <img src="https://placehold.co/40x40" alt="">
+           </label>
+         </li>
+        <li>
+           <label>
+             <input type="radio" class="sr-only" name="after" value="2">
+             <img src="https://placehold.co/40x40" alt="">
+             <span>아마라3333</span>
+             <img src="https://placehold.co/40x40" alt="">
+           </label>
+         </li>
+       <!--
       <input type="radio" id="after-1" class="sr-only" name="after" value="1" >
       <label for="after-1">
         <img src="https://placehold.co/40x40" alt="" >
@@ -43,6 +79,7 @@
         <img src="https://placehold.co/40x40" alt="" >
       </label>
     </li>
+     -->
   </ul>
 
  
